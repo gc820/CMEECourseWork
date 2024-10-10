@@ -1,0 +1,49 @@
+#!/bin/txt
+# Author: Georgina Chow georgina.chow20@imperial.ac.uk
+# Script: UnixPrac1.sh
+# Desc:  Calculates the number of lines in fasta files;
+#        Prints everything from the 2nd line; 
+#        Counts the sequence length;
+#        Counts the number of matches of ATGC in the E.coli genome;
+#        Counts the AT/GC ratio of the E.coli genome 
+# Arguments: 1  
+# Date: Oct 2024
+
+
+#1 Count the number of lines in each .fasta file 
+
+DIR="../data"
+for f in "$DIR"/*.fasta; do 
+    echo "Counting number of lines in $f"; 
+    NumLines=`wc -l < "$f"`
+    echo "Number of lines in file $f: $NumLines";
+done 
+
+
+#2 Print everything from the 2nd line of the E.coli genome 
+
+sed '1d' ../data/E.coli.fasta 
+# deleted the first line of the fasta file from processing 
+
+
+#3 Count sequence length of E.coli genome 
+
+echo "E.coli sequence length:" 
+sed '1d' ../data/E.coli.fasta | wc -c
+# counts the number of characters in the input file 
+
+
+#4 Count the number of matches in the E.coli sequence 
+
+echo "Number of ATGC matches in the E.coli genome:"
+sed '1d' ../data/E.coli.fasta | tr -d '\n' | grep -o "ATGC" | wc -l
+ # removes new lines from the input 
+ # looks for occurences of the exact string in the sequence and counts the length
+
+
+#5 AT/GC ratio 
+
+AT_count=$(sed '1d' ../data/E.coli.fasta | tr -d '\n' | grep -o -E "A|T" | wc -l); 
+GC_count=$(sed '1d' ../data/E.coli.fasta  | tr -d '\n' | grep -o -E "G|C" | wc -l); 
+ratio=$(echo "scale=6; $AT_count / $GC_count" | bc);
+echo "The AT/GC ratio is: $ratio"

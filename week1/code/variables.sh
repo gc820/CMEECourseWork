@@ -1,4 +1,9 @@
 #!/bin/sh 
+# Author: Georgina Chow georgina.chow20@imperial.ac.uk
+# Script: variables.sh
+# Description: Creates variables based on user input, asking for a string and 2 numbers 
+# Arguments: 3
+# Date: Oct 2024
 
 ## Illustrates the use of variables 
 

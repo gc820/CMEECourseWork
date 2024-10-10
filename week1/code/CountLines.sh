@@ -1,4 +1,9 @@
-#!/bin/bash 
+#!/bin/sh
+# Author: Georgina Chow georgina.chow20@imperial.ac.uk
+# Script: CountLines.sh
+# Description: Counts the number of lines in a file  
+# Arguments: 1
+# Date: Oct 2024
 
 echo "File: $1"
 NumLines=`wc -l < $1`

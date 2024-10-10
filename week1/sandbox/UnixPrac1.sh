@@ -3,15 +3,16 @@
 # Script: UnixPrac1.sh
 # Desc:  
 # Arguments:  
-# Date: Oct 2019
+# Date: Oct 2024
 
 #1 Count the number of lines in each .fasta file 
-for f in *.fasta;
-    do 
-        echo "Counting number of lines in $f"; 
-        NumLines=`wc -l < "$f"`
-        echo "Number of lines in file $f: $NumLines";
-    done 
+DIR="../data"
+
+for f in "$DIR"/*.fasta; do 
+    echo "Counting number of lines in $f"; 
+    NumLines=`wc -l < "$f"`
+    echo "Number of lines in file $f: $NumLines";
+done 
 
 #2 Print everything from the 2nd line of the E.coli genome 
 sed '1d' ../data/E.coli.fasta 
@@ -45,3 +46,4 @@ awk 'NR >1{
         print "GC is zero, ratio undefined.";
     }
 }' ../data/E.coli.fasta
+
