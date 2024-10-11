@@ -5,22 +5,28 @@
 # Arguments: 3
 # Date: Oct 2024
 
-#cat $1 > $3 
-#cat $2 >> $3 
-#echo "Merged File is" 
-#cat $3 
 
 if [ "$#" -ne 3 ] ; then 
 # Checks if the number of input files is not equal to 3
     echo "Error: You need to provide two input files and one output file."
     exit 1
 else 
-    cat $1 > $3 
-    # Writes a new $3 file with the contents from the $1 file
-    cat $2 >> $3 
-    # Appends the input of $2 file to $3 file (merges)
-    echo "Merged File is" 
-    cat $3 
-    # Prints the output of $3 file to the terminal 
+    inputfolder="../data" # Specify the input folder
+    outputfolder="../results" # Specify the output folder 
+    
+    # Specify paths to input files
+    inputfile1="$inputfolder/$1"
+    inputfile2="$inputfolder/$2"
+    outputfile="$outputfolder/$(basename "$3")"
+    
+    # Concatenate the first file into the output file in the results folder
+    cat "$inputfile1" > "$outputfile"
+
+    # Append the second file to the output file in the results folder
+    cat "$inputfile2" >> "$outputfile"
+
+    echo "Merged file is located within: $outputfile"
+
+    cat $outputfile 
     exit 
 fi

@@ -15,7 +15,6 @@ Code:
     csvtospace.sh - Converts csv files "," into " " ssv files, checking that only 1 csv file has been inputted 
     tabtocsv.sh - Converts tab .txt files " " into "," csv files 
     FirstBiblio.bib - Reference for bibliography 
-    FirstExample.pdf - Example LaTeX output pdf file 
     FirstExample.tex - Code for example LaTeX compiled document 
     MyExampleScript.sh - Example script 
     tabtocsv.sh - Creates a new file and converts tabs to commas in input file 
@@ -24,16 +23,13 @@ Code:
     variables.sh - Example script asking for user inputs 
 Data: 
     1800.csv
-    1800.csv.ssv 
     1801.csv
-    1801.csv.ssv 
     1802.csv
-    1802.csv.ssv 
     1803.csv
-    1803.csv.ssv 
     407228326.fasta
     407228412.fasta
     E.coli.fasta
     spawannxs.txt
+Results:
 
 Author name and contact: Georgina Chow, georgina.chow20@imperial.ac.uk

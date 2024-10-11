@@ -7,11 +7,11 @@
 # Arguments: 1  
 # Date: Oct 2024
 
-pdflatex $1.tex
-bibtex $1 
-pdflatex $1.tex
-pdflatex $1.tex
-evince $1.pdf & 
+pdflatex $1.tex  # Generates 2 incomplete files 
+bibtex $1  # Partially formats the bibliography, generates 2 more files 
+pdflatex $1.tex  # Updates the .aux and .log files 
+pdflatex $1.tex  # Runs and updates the final .log and .aux files to produce the final pdf 
+evince $1.pdf &  # Opens the pdf created 
 
 ## Cleanup rm *.aux
 rm *.aux 

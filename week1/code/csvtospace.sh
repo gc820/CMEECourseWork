@@ -7,11 +7,27 @@
 # Date: Oct 2024 
 
 #Find file in data directory 
-file="../data/$1"
+file="$1"
+outputfolder="../results"
 
-echo "Creating a space separated version of $file ..."
-cat $file | tr -s "," " " >> $file.ssv 
-# replaces the character "," with " " in file and saves it as .ssv
-echo "Done!" 
-exit 
+if [ "$#" -ne 1 ] ; then 
+# Checks if the number of input files is not equal to 1
+    echo "Error: You need to provide one input file only."
+    exit 1
+else 
+    # Check the input file exists 
+    if [ ! -f "$file" ]; then 
+        echo "Error: the file $file does not exist."
+        exit 1 
+    fi 
 
+    filename=$(basename "$file")
+    # Extracts the filename from the path (to use in results folder)
+    echo "Creating a space separated version of $file ..."
+    tr -s "," " " < "$file" > "$outputfolder/${filename}.ssv"  
+    # Replaces (translates) the "," with " " then creates a new file 
+    # < "$file" redirects input from a file to the tr command 
+    # > redirects the output from tr to a new file inside the output folder
+    echo "Done!"
+    exit  
+fi
