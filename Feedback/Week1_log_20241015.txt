@@ -1,0 +1,769 @@
+Starting code feedback for Georgina, Week1
+
+Current Points = 100
+
+Note that: 
+(1) Major sections begin with a double "====" line 
+(2) Subsections begin with a single "====" line 
+(3) Code output or text file content are printed within single "*****" lines 
+
+======================================================================
+======================================================================
+Your Git repo size this week is about 1.57 MiB on disk 
+
+PART 1: Checking project workflow...
+
+Found the following directories in parent directory: Feedback, .git, week2, week1
+
+Found the following files in parent directory: README.md, .gitignore
+
+Checking for key files in parent directory...
+
+Found .gitignore in parent directory, great! 
+
+Printing contents of .gitignore:
+
+**********************************************************************
+*~ 
+*.tmp
+
+**********************************************************************
+
+Found README in parent directory, named: README.md
+
+Printing contents of README.md:
+
+**********************************************************************
+My CMEE Coursework Repository
+
+Description: Git repository for CMEE bootcamp coursework and class files. 
+
+Languages: Bash (version 5.2.21(1), Python, Latex, R 
+
+Dependencies: N/A
+
+Installation: N/A
+
+Project structure and Usage: Project follows the structured bootcamp content covered within the module. 
+
+Author name and contact: Georgina Chow, georgina.chow20@imperial.ac.uk
+
+**********************************************************************
+
+======================================================================
+Looking for the weekly directories...
+
+Found 2 weekly directories: week1, week2
+
+The Week1 directory will be assessed 
+
+======================================================================
+======================================================================
+PART 2: Checking weekly code and workflow...
+
+======================================================================
+Assessing WEEK1...
+
+Found the following directories: results, data, sandbox, code
+
+Found the following files: README.md
+
+Checking for readme file in weekly directory...
+
+Found README in parent directory, named: README.md
+
+Printing contents of README.md:
+
+**********************************************************************
+CMEE Coursework: Week 1
+
+Description: Week 1 CMEE bootcamp coursework and class files: Unix & Linux, shell scripting, version control with Git, scientific documents with LaTeX 
+
+Languages: Bash (version 5.2.21(1), LaTeX
+
+Dependencies: N/A
+
+Project structure and Usage: Project follows the structured bootcamp content covered within the module:
+Code:
+    boilerplate.sh - simple example script 
+    CompileLaTeX.sh - Compiles latex and bibtex into a pdf and cleans up intermediate files 
+    ConcatenateTwoFiles.sh - merges two files into a new file and checks 3 files have been inputted
+    CountLines.sh - Counts the number of lines in the file 
+    csvtospace.sh - Converts csv files "," into " " ssv files, checking that only 1 csv file has been inputted 
+    tabtocsv.sh - Converts tab .txt files " " into "," csv files 
+    FirstBiblio.bib - Reference for bibliography 
+    FirstExample.tex - Code for example LaTeX compiled document 
+    MyExampleScript.sh - Example script 
+    tabtocsv.sh - Creates a new file and converts tabs to commas in input file 
+    tiff2png.sh - Converts .tiff to .png files 
+    UnixPrac1.txt - Unix practical coursework code 
+    variables.sh - Example script asking for user inputs 
+Data: 
+    1800.csv
+    1801.csv
+    1802.csv
+    1803.csv
+    407228326.fasta
+    407228412.fasta
+    E.coli.fasta
+    spawannxs.txt
+Results:
+
+Author name and contact: Georgina Chow, georgina.chow20@imperial.ac.uk
+
+**********************************************************************
+
+Results directory is empty - good! 
+
+Found 12 code files: variables.sh, ConcatenateTwoFiles.sh, CountLines.sh, tabtocsv.sh, CompileLaTeX.sh, MyExampleScript.sh, FirstExample.tex, tiff2png.sh, csvtospace.sh, UnixPrac1.txt, FirstBiblio.bib, boilerplate.sh
+
+Found the following extra files: FirstExample.pdf
+0.5 pt deducted per extra file
+
+Current Points = 99.5
+
+======================================================================
+Testing script/code files...
+
+======================================================================
+Inspecting script file variables.sh...
+
+File contents are:
+
+**********************************************************************
+#!/bin/sh 
+# Author: Georgina Chow georgina.chow20@imperial.ac.uk
+# Script: variables.sh
+# Description: Creates variables based on user input, asking for a string and 2 numbers 
+# Arguments: 3
+# Date: Oct 2024
+
+## Illustrates the use of variables 
+
+# Special variables 
+
+echo "This script was called with $# parameters"
+echo "The script's name is $0" 
+echo "The arguments are $@" 
+echo "The first argument is $1" 
+echo "The second argument is $2" 
+
+# Assigned Variables; Explicit declaration: 
+MY_VAR='some string' 
+echo 'the current value of the variable is:' $$MY_VAR
+echo 
+echo 'Please enter a new string' 
+read MY_VAR 
+echo 
+echo 'the current value of the variable is:' $MY_VAR
+echo 
+
+## Assigned Variables; Reading (multiple values) from user input:
+echo 'Enter two numbers separated by space(s)' 
+read a b 
+echo 
+echo 'you entered' $a 'and' $b '; Their sum is:' 
+
+## Assigned Variables; Command substitution 
+MY_SUM=$(expr $a + $b)
+echo $MY_SUM
+
+**********************************************************************
+
+Testing variables.sh...
+
+Output (only first 500 characters): 
+
+
+**********************************************************************
+This script was called with 0 parameters
+The script's name is variables.sh
+The arguments are 
+The first argument is 
+The second argument is 
+the current value of the variable is: 144543MY_VAR
+
+Please enter a new string
+
+the current value of the variable is:
+
+Enter two numbers separated by space(s)
+
+you entered and ; Their sum is:
+
+
+**********************************************************************
+
+Encountered error (or warning):
+
+***IGNORE IF THIS ERROR IS EXPECTED AS PART OF AN IN-CLASS EXERCISE***
+
+expr: syntax error: missing argument after ‘+’
+
+======================================================================
+Inspecting script file ConcatenateTwoFiles.sh...
+
+File contents are:
+
+**********************************************************************
+#!/bin/sh 
+# Author: Georgina Chow georgina.chow20@imperial.ac.uk
+# Script: ConcatenaateTwoFiles.sh
+# Description: Concatenates 2 files together into 1 merged file 
+# Arguments: 3
+# Date: Oct 2024
+
+
+if [ "$#" -ne 3 ] ; then 
+# Checks if the number of input files is not equal to 3
+    echo "Error: You need to provide two input files and one output file."
+    exit 1
+else 
+    inputfolder="../data" # Specify the input folder
+    outputfolder="../results" # Specify the output folder 
+    
+    # Specify paths to input files
+    inputfile1="$inputfolder/$1"
+    inputfile2="$inputfolder/$2"
+    outputfile="$outputfolder/$(basename "$3")"
+    
+    # Concatenate the first file into the output file in the results folder
+    cat "$inputfile1" > "$outputfile"
+
+    # Append the second file to the output file in the results folder
+    cat "$inputfile2" >> "$outputfile"
+
+    echo "Merged file is located within: $outputfile"
+
+    cat $outputfile 
+    exit 
+fi
+**********************************************************************
+
+Testing ConcatenateTwoFiles.sh...
+
+Output (only first 500 characters): 
+
+
+**********************************************************************
+Error: You need to provide two input files and one output file.
+
+**********************************************************************
+
+Code ran without errors
+
+Time consumed = 0.00318s
+
+======================================================================
+Inspecting script file CountLines.sh...
+
+File contents are:
+
+**********************************************************************
+#!/bin/sh
+# Author: Georgina Chow georgina.chow20@imperial.ac.uk
+# Script: CountLines.sh
+# Description: Counts the number of lines in a file  
+# Arguments: 1
+# Date: Oct 2024
+
+file="../data/$1"
+
+if [ "$#" -ne 1 ] ; then 
+# Checks if the number of input files is not equal to 1
+    echo "Error: You need to provide one input file only."
+    exit 1
+else 
+    echo "File: $file"
+    NumLines=`wc -l < $file`
+    echo "Line count: $NumLines"
+    echo "The file $file has $NumLines lines"  
+
+fi
+
+# Can also be written as NumLines=$(wc -l < $1)
+# < is required to specify the contents of the file to the standard input 
+# and to prevent the file name from also being printed 
+**********************************************************************
+
+Testing CountLines.sh...
+
+Output (only first 500 characters): 
+
+
+**********************************************************************
+Error: You need to provide one input file only.
+
+**********************************************************************
+
+Code ran without errors
+
+Time consumed = 0.00394s
+
+======================================================================
+Inspecting script file tabtocsv.sh...
+
+File contents are:
+
+**********************************************************************
+#!/bin/sh
+# Author: Georgina Chow georgina.chow20@imperial.ac.uk
+# Script: tabtocsv.sh 
+# Description: substitute the tabs in the files with commas 
+# Saves the output into a .csv file 
+# Arguments: 1 -> tb delimited file 
+# Date: Oct 2024 
+
+# $1 specifies the first variable/file name of the script 
+# tr = translate 
+# -s = squeeze replaces the specified chatacter (\t tab in this case)
+# with ","
+# The output of the tr command is then stored in a new file in the original directory of $1
+
+#Find file in data directory 
+file="$1"
+outputfolder="../results"
+
+if [ "$#" -ne 1 ] ; then 
+# Checks if the number of input files is not equal to 1
+    echo "Error: You need to provide one input file only."
+    exit 1
+else 
+    filename=$(basename "$file")
+    # Extracts the filename from the path (to use in results folder)
+    echo "Creating a comma delimited version of $1 ..." 
+    tr -s "\t" "," < "$file" > "$outputfolder/${filename}.csv"
+    # Replaces (translate) the "\t" with "," then creates a new file 
+    # < "$file" redirects input from a file to the tr command 
+    # > redirects the output from tr to a new file inside the output folder
+    echo "Done!"
+    exit  
+fi
+
+ 
+**********************************************************************
+
+Testing tabtocsv.sh...
+
+Output (only first 500 characters): 
+
+
+**********************************************************************
+Error: You need to provide one input file only.
+
+**********************************************************************
+
+Code ran without errors
+
+Time consumed = 0.00560s
+
+======================================================================
+Inspecting script file CompileLaTeX.sh...
+
+File contents are:
+
+**********************************************************************
+#!/bin/sh
+# Author: Georgina Chow georgina.chow20@imperial.ac.uk
+# Script: Compile.LaTeX.sh
+# Desc: Compiles latex with bibtex to produce a .pdf file that has 
+#       formatted citations. 
+#       Removes and cleans up intermediate files. 
+# Arguments: 1  
+# Date: Oct 2024
+
+pdflatex $1.tex  # Generates 2 incomplete files 
+bibtex $1  # Partially formats the bibliography, generates 2 more files 
+pdflatex $1.tex  # Updates the .aux and .log files 
+pdflatex $1.tex  # Runs and updates the final .log and .aux files to produce the final pdf 
+evince $1.pdf &  # Opens the pdf created 
+
+## Cleanup rm *.aux
+rm *.aux 
+rm *.log
+rm *.bbl 
+rm *.blg  
+
+**********************************************************************
+
+Testing CompileLaTeX.sh...
+
+Output (only first 500 characters): 
+
+
+**********************************************************************
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex)
+ restricted \write18 enabled.
+entering extended mode
+(/usr/share/texlive/texmf-dist/tex/latex/tools/.tex
+LaTeX2e <2023-11-01> patch level 1
+L3 programming layer <2024-01-22>
+File ignored)
+*
+! Emergency stop.
+<*> 
+    
+!  ==> Fatal error occurred, no output PDF file produced!
+Transcript written on .log.
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex)
+**********************************************************************
+
+Encountered error (or warning):
+
+***IGNORE IF THIS ERROR IS EXPECTED AS PART OF AN IN-CLASS EXERCISE***
+
+bibtex: Need exactly one file argument.
+Try `bibtex --help' for more information.
+rm: cannot remove '*.aux': No such file or directory
+rm: cannot remove '*.log': No such file or directory
+rm: cannot remove '*.bbl': No such file or directory
+rm: cannot remove '*.blg': No such file or directory
+
+(process:144561): Gtk-WARNING **: 07:29:13.462: Locale not supported by C library.
+	Using the fallback 'C' locale.
+
+(evince:144561): Gtk-WARNING **: 07:29:13.510: Theme parsing error: gtk-keys.css:1:0: Failed to import: Error opening file /snap/code/172/usr/share/themes/Default/gtk-3.0/gtk-keys.css: Permission denied
+Gtk-Message: 07:29:13.510: Failed to load module "canberra-gtk-module"
+Gtk-Message: 07:29:13.511: Failed to load module "canberra-gtk-module"
+/home/mhasoba/snap/code/common/.cache/gio-modules/libdconfsettings.so: cannot open shared object file: Permission denied
+Failed to load module: /home/mhasoba/snap/code/common/.cache/gio-modules/libdconfsettings.so
+
+** (evince:144561): WARNING **: 07:29:13.760: set_filenames: Error when getting information for file ?/home/mhasoba/Documents/Teaching/IC_CMEE/2024-25/Coursework/StudentRepos/GeorginaChow_gc820/week1/code/.pdf?: No such file or directory
+
+======================================================================
+Inspecting script file MyExampleScript.sh...
+
+File contents are:
+
+**********************************************************************
+#!/bin/sh
+# Author: Georgina Chow georgina.chow20@imperial.ac.uk
+# Script: MyExampleScript.sh
+# Description: Example shell script, asking for user input 
+# Arguments: 0
+# Date: Oct 2024
+
+MSG1="Hello" 
+MSG2=$USER 
+echo "$MSG1 $MSG2" 
+echo "Hello $USER"
+echo 
+
+**********************************************************************
+
+Testing MyExampleScript.sh...
+
+Output (only first 500 characters): 
+
+
+**********************************************************************
+Hello mhasoba
+Hello mhasoba
+
+
+**********************************************************************
+
+Code ran without errors
+
+Time consumed = 0.00483s
+
+======================================================================
+Inspecting script file FirstExample.tex...
+
+File contents are:
+
+**********************************************************************
+\documentclass[12pt]{article}
+
+\title{A Simple Document}
+
+\author{Georgina Chow}
+
+\date{07/10/24}
+
+\begin{document}
+    \maketitle 
+
+    \begin{abstract}
+        This paper analyzes a seminal equation in population biology. 
+    \end{abstract}
+
+    \section{Introduction}
+        Blah blah 
+    
+    \section{Materials \&Methods}
+
+        A foundational equation of population biology is: 
+    
+    \begin{equation}
+        \frac{dN}{dt} = r N (1 - \frac{N}{K})
+    \end{equation}
+     
+    It was first proposed by Verhulst in 1838 \cite{verhulst1838notice}.
+
+    \bibliographystyle{plain}
+
+    \bibliography{FirstBiblio}
+
+\end{document}
+
+
+**********************************************************************
+
+Testing FirstExample.tex...
+
+======================================================================
+Inspecting script file tiff2png.sh...
+
+File contents are:
+
+**********************************************************************
+#!/bin/sh
+# Author: Georgina Chow georgina.chow20@imperial.ac.uk
+# Script: tiff2png.sh
+# Description: Converts .tiff to .png files  
+# Arguments: 1
+# Date: Oct 2024
+
+# Original basic script 
+
+#for f in *.tif; 
+#    do 
+#        echo "Converting $f"; 
+#        convert "$f" "$(basename "$f" .tif).png"; 
+#    done 
+
+
+# Improved script 
+
+inputfolder="../data"
+outputfolder="../results"
+
+# Modifies how bash handles the filename expansion (globbing)
+# shopt = shell options; -s = set; 
+# nullglob = allows filename patterns that don't match to expand to a null string 
+#            rather than a literal string
+shopt -s nullglob # Prevents loop running if no files match
+# Collects all tiff files from the input folder to put into an array 
+tiff_files=("$inputfolder"/*.tiff "$inputfolder"/*.tif)
+
+if [ ${#tiff_files[@]} -eq 0 ]; then 
+    echo "Error: No .tiff or .tif files found in $inputfolder."
+    exit 1 
+fi
+# Checks if the tiff_files array is empty 
+# ie. if 0 then there are no tiff files in the folder  
+    
+for f in "${tiff_files[@]}"; do 
+# Iterates of each file in the tiff_array 
+        echo "Converting $f to PNG format"
+        convert "$f" "$outputfolder/$(basename "${f%.*}").png"; 
+        # Generates the output filename 
+        # $(basename "${f%.*}").png - extracts the base filename from full file path 
+        # without the file extension & appends .png to the base filename
+    done 
+
+echo "All conversions complete, see the $outputfolder folder."
+exit 0 
+**********************************************************************
+
+Testing tiff2png.sh...
+
+Output (only first 500 characters): 
+
+
+**********************************************************************
+Error: No .tiff or .tif files found in ../data.
+
+**********************************************************************
+
+Code ran without errors
+
+Time consumed = 0.00630s
+
+======================================================================
+Inspecting script file csvtospace.sh...
+
+File contents are:
+
+**********************************************************************
+#!/bin/sh 
+# Author: Georgina Chow georgina.chow20@imperial.ac.uk 
+# Script: csvtospace.sh 
+# Description: substitutes commas in files to spaces and creates a new file 
+#              Saves the output into a .ssv file 
+# Arguments: 1 -> space separated file 
+# Date: Oct 2024 
+
+#Find file in data directory 
+file="$1"
+outputfolder="../results"
+
+if [ "$#" -ne 1 ] ; then 
+# Checks if the number of input files is not equal to 1
+    echo "Error: You need to provide one input file only."
+    exit 1
+else 
+    # Check the input file exists 
+    if [ ! -f "$file" ]; then 
+        echo "Error: the file $file does not exist."
+        exit 1 
+    fi 
+
+    filename=$(basename "$file")
+    # Extracts the filename from the path (to use in results folder)
+    echo "Creating a space separated version of $file ..."
+    tr -s "," " " < "$file" > "$outputfolder/${filename}.ssv"  
+    # Replaces (translates) the "," with " " then creates a new file 
+    # < "$file" redirects input from a file to the tr command 
+    # > redirects the output from tr to a new file inside the output folder
+    echo "Done!"
+    exit  
+fi
+
+**********************************************************************
+
+Testing csvtospace.sh...
+
+Output (only first 500 characters): 
+
+
+**********************************************************************
+Error: You need to provide one input file only.
+
+**********************************************************************
+
+Code ran without errors
+
+Time consumed = 0.00500s
+
+======================================================================
+Inspecting script file UnixPrac1.txt...
+
+File contents are:
+
+**********************************************************************
+#!/bin/txt
+# Author: Georgina Chow georgina.chow20@imperial.ac.uk
+# Script: UnixPrac1.sh
+# Desc:  Calculates the number of lines in fasta files;
+#        Prints everything from the 2nd line; 
+#        Counts the sequence length;
+#        Counts the number of matches of ATGC in the E.coli genome;
+#        Counts the AT/GC ratio of the E.coli genome 
+# Arguments: 1  
+# Date: Oct 2024
+
+
+#1 Count the number of lines in each .fasta file 
+
+DIR="../data"
+for f in "$DIR"/*.fasta; do 
+    echo "Counting number of lines in $f"; 
+    NumLines=`wc -l < "$f"`
+    echo "Number of lines in file $f: $NumLines";
+done 
+
+
+#2 Print everything from the 2nd line of the E.coli genome 
+
+sed '1d' ../data/E.coli.fasta 
+# deleted the first line of the fasta file from processing 
+
+
+#3 Count sequence length of E.coli genome 
+
+echo "E.coli sequence length:" 
+sed '1d' ../data/E.coli.fasta | wc -c
+# counts the number of characters in the input file 
+
+
+#4 Count the number of matches in the E.coli sequence 
+
+echo "Number of ATGC matches in the E.coli genome:"
+sed '1d' ../data/E.coli.fasta | tr -d '\n' | grep -o "ATGC" | wc -l
+ # removes new lines from the input 
+ # looks for occurences of the exact string in the sequence and counts the length
+
+
+#5 AT/GC ratio 
+
+AT_count=$(sed '1d' ../data/E.coli.fasta | tr -d '\n' | grep -o -E "A|T" | wc -l); 
+GC_count=$(sed '1d' ../data/E.coli.fasta  | tr -d '\n' | grep -o -E "G|C" | wc -l); 
+ratio=$(echo "scale=6; $AT_count / $GC_count" | bc);
+echo "The AT/GC ratio is: $ratio"
+**********************************************************************
+
+Testing UnixPrac1.txt...
+
+======================================================================
+Inspecting script file FirstBiblio.bib...
+
+File contents are:
+
+**********************************************************************
+@article{verhulst1838notice,
+  title={Notice sur la loi que la population suit dans son accroissement},
+  author={Verhulst, Pierre-Fran{\c{c}}ois},
+  journal={Corresp. Math. Phys.},
+  volume={10},
+  pages={113--126},
+  year={1838}
+}
+**********************************************************************
+
+Testing FirstBiblio.bib...
+
+======================================================================
+Inspecting script file boilerplate.sh...
+
+File contents are:
+
+**********************************************************************
+#!/bin/sh
+# Author: Georgina Chow georgina.chow20@imperial.ac.uk
+# Script: boilerplate.sh
+# Desc: simple shell example script, printing a phrase
+# Arguments: 0 
+# Date: Oct 2024
+
+echo -e "\nThis is a shell script!\n"
+
+# -e allows escape sequences (\n, \t etc.) to be interpreted 
+
+#exit
+
+
+
+**********************************************************************
+
+Testing boilerplate.sh...
+
+Output (only first 500 characters): 
+
+
+**********************************************************************
+
+This is a shell script!
+
+
+**********************************************************************
+
+Code ran without errors
+
+Time consumed = 0.00573s
+
+======================================================================
+======================================================================
+Finished running scripts
+
+Ran into 2 errors
+
+======================================================================
+======================================================================
+
+FINISHED WEEKLY ASSESSMENT
+
+Current Points for the Week = 99.5
+
+NOTE THAT THESE ARE POINTS, NOT MARKS FOR THE WEEK!
