@@ -2,7 +2,7 @@
 # Author: Georgina Chow georgina.chow20@imperial.ac.uk
 # Script: basic_csv.py
 # Desc: extracts species name and body mass from csv file
-# Arguments: 1
+# Arguments: 0
 # Date: Oct 2024
 
 # Handling csv's 
