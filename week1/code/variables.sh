@@ -17,7 +17,7 @@ echo "The second argument is $2"
 
 # Assigned Variables; Explicit declaration: 
 MY_VAR='some string' 
-echo 'the current value of the variable is:' $$MY_VAR
+echo 'the current value of the variable is:' $MY_VAR
 echo 
 echo 'Please enter a new string' 
 read MY_VAR 
