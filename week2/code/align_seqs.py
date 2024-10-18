@@ -65,7 +65,7 @@ def main(): # Defining the main function  of the program
         print("Usage: align_seqs.py <input_file.csv>")
         sys.exit(1)
     
-    input_file = sys.argv[1] # Input csv provided 
+    input_file = '../data/' + sys.argv[1] # Input csv provided 
 
     # Check if the input file is a csv file
     if not input_file.endswith('.csv'):
