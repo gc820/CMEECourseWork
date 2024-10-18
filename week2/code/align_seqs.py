@@ -1,15 +1,8 @@
-#!/usr/bin/env python3
-# Author: Georgina Chow georgina.chow20@imperial.ac.uk
-# Script: align_seqs.py
-# Desc: Aligns 2 DNA sequences from an input csv file, finding the highest matching positions and giving a score
-#       which is then put in a txt file in the results folder
-# Arguments: 1
-# Date: Oct 2024
-
 """Program to find the best alignment of 2 DNA sequences"""
 
+__appname__ = 'boilerplate.py'
 __author__ = 'Georgina Chow (georgina.chow20@imperial.ac.uk)'
-__version__ = '0.0.1'
+__version__ = '3.12.3'
 
 import csv # module to read/write/investigate csv files 
 import sys # module to interface our program with the operating system 
@@ -18,6 +11,7 @@ import os
 # A function that computes a score by returning the number of matches starting
 # from arbitrary startpoint (chosen by user)
 def calculate_score(s1, s2, l1, l2, startpoint):
+    """Calculates the DNA sequence alignment score"""
     matched = "" # to hold string displaying alignements
     score = 0 # tracks the number of matches
     for i in range(l2): # Iterates over the length of the shorter s2 seq 
@@ -46,6 +40,7 @@ def calculate_score(s1, s2, l1, l2, startpoint):
 
 # now try to find the best match (highest score) for the two sequences
 def align_seqs(s1, s2, l1, l2):
+    """Aligns DNA sequences from an input file and finds the best alignment"""
     my_best_align = None # holds string representaion of best alignment
     my_best_score = -1 # store highest score so far (-1 to be lower than any possible score)
 
@@ -61,6 +56,7 @@ def align_seqs(s1, s2, l1, l2):
     return my_best_align, my_best_score # Return best alignment after all iterations 
 
 def main(): # Defining the main function  of the program 
+    """Checks the input file and produces an output file with the best alignment and score"""
     if len(sys.argv) < 2:
         print("Usage: align_seqs.py <input_file.csv>")
         sys.exit(1)

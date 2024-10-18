@@ -1,9 +1,8 @@
-#!/usr/bin/env python3 
-# Author: Georgina Chow georgina.chow20@imperial.ac.uk
-# Script: sysargv.py
-# Desc: testing sysargv module  
-# Arguments: 0
-# Date: Oct 2024
+"""Demonstrates the use of sys.argv module in python"""
+
+__appname__ = 'sysargv.py'
+__author__ = 'Georgina Chow (georgina.chow20@imperial.ac.uk)'
+__version__ = '3.12.3'
 
 import sys
 print("This is the name of the script: ", sys.argv[0])

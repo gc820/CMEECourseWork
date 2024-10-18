@@ -1,15 +1,9 @@
-#!/usr/bin/env python3
-# Author: Georgina Chow georgina.chow20@imperial.ac.uk
-# Script: test_control_flow.py
-# Desc: functions exemplifying the use of control statements and doctests 
-# Arguments: 1
-# Date: Oct 2024
-
 """Some funtions exemplifying the use of control statements""" 
 #docstrings are considered part of the running code (normal comments are
 #stripped). Hence, you can access your dostrings at run time. 
+__appname__ = 'boilerplate.py'
 __author__ = 'Georgina Chow (georgina.chow20@imperial.ac.uk)'
-__version__ = '0.0.1'
+__version__ = '3.12.3'
 
 ## imports ## 
 import sys # module to interface our program with the operating system 
@@ -27,7 +21,7 @@ def even_or_odd(x=0): # if not specified, x should take value 0.
 
     in case of negative numbers, the positive is taken: 
     >>> even_or_odd(-2)
-    '-2 is Even!'
+    '-2 is Even!' 
     """
     #Define function to be tested
     if x % 2 == 0: # Chekcs if the number is completely divisible by 2 
@@ -35,6 +29,7 @@ def even_or_odd(x=0): # if not specified, x should take value 0.
     return f"{x} is Odd!"
 
 def main(argv):
+    """Main argument variable"""
     print(even_or_odd(22))
     print(even_or_odd(33))
     return 0 

@@ -1,9 +1,8 @@
-#!/usr/bin/env python3 
-# Author: Georgina Chow georgina.chow20@imperial.ac.uk
-# Script: basic_io2.py
-# Desc: opens file and saves numbered list in a new file  
-# Arguments: 0
-# Date: Oct 2024
+"""Basic python program creating a numbered list of values (0 to 99)"""
+
+__appname__ = 'basic_io2.py'
+__author__ = 'Georgina Chow (georgina.chow20@imperial.ac.uk)'
+__version__ = '3.12.3'
 
 ########################
 # FILE OUTPUT 

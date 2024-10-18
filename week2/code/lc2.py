@@ -1,9 +1,8 @@
-#!/usr/bin/env python3 
-# Author: Georgina Chow georgina.chow20@imperial.ac.uk
-# Script: lc2.py
-# Desc: list comprehensions and loops exercise extracting rainfall data
-# Arguments: 0
-# Date: Oct 2024
+"""List comprehensions 2"""
+
+__appname__ = 'lc2.py'
+__author__ = 'Georgina Chow (georgina.chow20@imperial.ac.uk)'
+__version__ = '3.12.3'
 
 # Average UK Rainfall (mm) for 1910 by month
 # http://www.metoffice.gov.uk/climate/uk/datasets

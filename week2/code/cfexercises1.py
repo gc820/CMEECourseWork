@@ -1,16 +1,10 @@
-#!/usr/bin/env python3 
-# Author: Georgina Chow georgina.chow20@imperial.ac.uk
-# Script: cfexercises1.py
-# Desc: python program with control flows and doctests
-# Arguments: 6
-# Date: Oct 2024
-
 """Writing a program with control flows"""
 
-#### Add docstring tests into here #####
-
+__appname__ = 'cfexercises1.py'
 __author__ = 'Georgina Chow (georgina.chow20@imperial.ac.uk)'
-__version__ = '0.0.1'
+__version__ = '3.12.3'
+
+#### Add docstring tests into here #####
 
 import sys 
 import doctest

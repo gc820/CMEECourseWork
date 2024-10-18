@@ -1,9 +1,8 @@
-#!/usr/bin/env python3 
-# Author: Georgina Chow georgina.chow20@imperial.ac.uk
-# Script: oaks.py
-# Desc: using loops and list comprehensions to extract taxa informaton
-# Arguments: 1
-# Date: Oct 2024
+"""Identifies oak species from a predefined list of taxa"""
+
+__appname__ = 'oaks.py'
+__author__ = 'Georgina Chow (georgina.chow20@imperial.ac.uk)'
+__version__ = '3.12.3'
 
 ## Finds just those taxa that are oak trees from a list of species 
 
@@ -15,6 +14,7 @@ taxa = [ 'Quercus robur',
          ]
 
 def is_an_oak(name):
+    """Returns oak species"""
     return name.lower().startswith('quercus ') # Makes all names lowercase 
 
 ##Using for loops 

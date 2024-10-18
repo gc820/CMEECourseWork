@@ -1,9 +1,8 @@
-#!/usr/bin/env python3 
-# Author: Georgina Chow georgina.chow20@imperial.ac.uk
-# Script: dictionary.py
-# Desc: dictionary list comprehensions and loops to extract taxa data 
-# Arguments: 0
-# Date: Oct 2024
+"""Processes taxa list and creates a dictionary"""
+
+__appname__ = 'dictionary.py'
+__author__ = 'Georgina Chow (georgina.chow20@imperial.ac.uk)'
+__version__ = '3.12.3'
 
 taxa = [ ('Myotis lucifugus','Chiroptera'),
          ('Gerbillus henleyi','Rodentia',),

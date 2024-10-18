@@ -1,9 +1,8 @@
-#!/usr/bin/env python3 
-# Author: Georgina Chow georgina.chow20@imperial.ac.uk
-# Script: MyExampleScript.py
-# Desc: example function  
-# Arguments: 1
-# Date: Oct 2024
+"""Function use in python example"""
+
+__appname__ = 'MyExampleScript.py'
+__author__ = 'Georgina Chow (georgina.chow20@imperial.ac.uk)'
+__version__ = '3.12.3'
 
 # Running Python Scripts 
 

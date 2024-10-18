@@ -1,9 +1,8 @@
-#!/usr/bin/env python3 
-# Author: Georgina Chow georgina.chow20@imperial.ac.uk
-# Script: loops.py
-# Desc: loops and conditional statement example 
-# Arguments: 0
-# Date: Oct 2024
+"""Loops example scripts"""
+
+__appname__ = 'loops.py'
+__author__ = 'Georgina Chow (georgina.chow20@imperial.ac.uk)'
+__version__ = '3.12.3'
 
 #Loop examples 
 # FOR loops 

@@ -1,10 +1,8 @@
-#!/usr/bin/env python3 
-# Author: Georgina Chow georgina.chow20@imperial.ac.uk
-# Script: basic_io3.py
-# Desc: Writing dictonaries to files, 
-#       serializing and deserializing the data from the file.
-# Arguments: 1
-# Date: Oct 2024
+"""Basic program how to serialize and deserialize a dictionary"""
+
+__appname__ = 'basic_io3.py'
+__author__ = 'Georgina Chow (georgina.chow20@imperial.ac.uk)'
+__version__ = '3.12.3'
 
 ########################
 # STORING OBJECTS

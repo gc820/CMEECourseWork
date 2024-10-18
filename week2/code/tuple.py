@@ -1,9 +1,8 @@
-#!/usr/bin/env python3 
-# Author: Georgina Chow georgina.chow20@imperial.ac.uk
-# Script: tuple.py
-# Desc: example script using tuples 
-# Arguments: 0
-# Date: Oct 2024
+"""Demonstrates use of tuple in python"""
+
+__appname__ = 'tuple.py'
+__author__ = 'Georgina Chow (georgina.chow20@imperial.ac.uk)'
+__version__ = '3.12.3'
 
 birds = ( ('Passerculus sandwichensis','Savannah sparrow',18.7),
           ('Delichon urbica','House martin',19),

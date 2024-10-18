@@ -1,9 +1,8 @@
-#!/usr/bin/env python3 
-# Author: Georgina Chow georgina.chow20@imperial.ac.uk
-# Script: basic_csv.py
-# Desc: extracts species name and body mass from csv file
-# Arguments: 0
-# Date: Oct 2024
+"""Handling basic CSV files"""
+
+__appname__ = 'basic_csv.py'
+__author__ = 'Georgina Chow (georgina.chow20@imperial.ac.uk)'
+__version__ = '3.12.3'
 
 # Handling csv's 
 import csv

@@ -1,11 +1,11 @@
-#!/usr/bin/env python3
-# Author: Georgina Chow georgina.chow20@imperial.ac.uk
-# Script: debugme.py
-# Desc: example script to test python debugging 
-# Arguments: 1
-# Date: Oct 2024
+"""Demonstration of deugging techniques in python programs"""_
+
+__appname__ = 'debugme.py'
+__author__ = 'Georgina Chow (georgina.chow20@imperial.ac.uk)'
+__version__ = '3.12.3'
 
 def buggyfunc(x): # Define the degging function 
+    """Debugging function"""
     y = x 
     for i in range(x):
         try: # used to handle exceptions (errors) that may occur

@@ -1,15 +1,10 @@
-#!/usr/bin/env python3
-# Author: Georgina Chow georgina.chow20@imperial.ac.uk
-# Script: control_flow.py
-# Desc: control flow example script, defining numeric functions  
-# Arguments: 1
-# Date: Oct 2024
-
 """Some funtions exemplifying the use of control statements""" 
 #docstrings are considered part of the running code (normal comments are
 #stripped). Hence, you can access your dostrings at run time. 
+
+__appname__ = 'boilerplate.py'
 __author__ = 'Georgina Chow (georgina.chow20@imperial.ac.uk)'
-__version__ = '0.0.1'
+__version__ = '3.12.3'
 
 ## imports ## 
 import sys # module to interface our program with the operating system 
@@ -55,6 +50,7 @@ def find_all_primes(x=22):
     return allprimes
 
 def main(argv): # testing and printing the functions with specified values 
+    """Main argument of program"""
     print(even_or_odd(22))
     print(even_or_odd(33))
     print(largest_divisor_five(120))

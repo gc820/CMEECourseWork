@@ -1,9 +1,8 @@
-#!/usr/bin/env python3
-# Author: Georgina Chow georgina.chow20@imperial.ac.uk
-# Script: oaks_debugme.py
-# Desc: finds the oak species in a csv file 
-# Arguments: 1
-# Date: Oct 2024
+"""Identifies oak species based on genus name from file"""
+
+__appname__ = 'oaks_debugme.py'
+__author__ = 'Georgina Chow (georgina.chow20@imperial.ac.uk)'
+__version__ = '3.12.3'
 
 import csv
 import sys
@@ -30,6 +29,7 @@ def is_an_oak(name):
     # Checks for both exact matches of quercus 
 
 def main(argv): 
+    """Defines the main argument and writes output file"""
     f = open('../data/TestOaksData.csv','r')
     g = open('../results/JustOaksData.csv','w')
     taxa = csv.reader(f)

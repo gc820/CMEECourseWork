@@ -1,9 +1,8 @@
-#!/usr/bin/env python3 
-# Author: Georgina Chow georgina.chow20@imperial.ac.uk
-# Script: cfexercises2.py
-# Desc: python module, with lists of functions printing hello 
-# Arguments: 6
-# Date: Oct 2024
+"""Functions utilizing control flows"""
+
+__appname__ = 'cfexercises2.py'
+__author__ = 'Georgina Chow (georgina.chow20@imperial.ac.uk)'
+__version__ = '3.12.3'
 
 ##########
 def hello_1(x):
@@ -17,10 +16,11 @@ hello_1(12)
 
 ##########
 def hello_2(x):
+    """Numbers with remainders divisible by 4 and 5"""
     for j in range(x):
         if j % 5 == 3:
             print('hello')
-        elif j % 4 ==3:
+        elif j % 4 == 3:
             print('hello')
     print(' ')
 
@@ -28,6 +28,7 @@ hello_2(12)
 
 ##########
 def hello_3(x, y):
+    """Prints hello in range x,y"""
     for i in range(x, y):
         print('hello')
     print(' ')
@@ -36,6 +37,7 @@ hello_3(3,17)
 
 ##########
 def hello_4(x):
+    """Prints hello whilst x is less than 15"""
     while x != 15: # while x is not 15 
         print('hello')
         x = x + 3
@@ -45,6 +47,7 @@ hello_4(0)
 
 ##########
 def hello_5(x):
+    """Print hello in ranges"""
     while x <100:
         if x == 31:
             for k in range(7):
@@ -58,6 +61,7 @@ hello_5(12)
 
 ##########
 def hello_6(x, y):
+    """Prints hello up to 6"""
     while x: 
         print("hello! " + str(y))
         y += 1 

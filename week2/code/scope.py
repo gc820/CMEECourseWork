@@ -1,9 +1,8 @@
-#!/usr/bin/env python3 
-# Author: Georgina Chow georgina.chow20@imperial.ac.uk
-# Script: scope.py
-# Desc:  defines functions and takes global variables to check their scope within functions
-# Arguments: 0
-# Date: Oct 2024
+"""Demonstrates the concept of variable scope of local and global variables"""
+
+__appname__ = 'scope.py'
+__author__ = 'Georgina Chow (georgina.chow20@imperial.ac.uk)'
+__version__ = '3.12.3'
 
 #Global variables 
 _a_global = 10 #a global variable 

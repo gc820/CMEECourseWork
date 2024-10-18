@@ -1,17 +1,9 @@
-#!/usr/bin/env python3
-# Author: Georgina Chow georgina.chow20@imperial.ac.uk
-# Script: boilerplate.py
-# Desc: example python module/program with functions 
-# Arguments: 1
-# Date: Oct 2024
-
 """Description of this program or application. 
 You can use several lines""" 
 
-__appname__ = '[application name here]'
+__appname__ = 'basic_io1.py'
 __author__ = 'Georgina Chow (georgina.chow20@imperial.ac.uk)'
-__version__ = '0.0.1'
-__license__ = "License for this code/program"
+__version__ = '3.12.3'
 
 ## imports ## 
 import sys # module to interface our program with the operating system 

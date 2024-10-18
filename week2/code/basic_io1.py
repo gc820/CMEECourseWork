@@ -1,9 +1,9 @@
-#!/usr/bin/env python3 
-# Author: Georgina Chow georgina.chow20@imperial.ac.uk
-# Script: basic_io1.py
-# Desc: opens and prints lines in input file  
-# Arguments: 1
-# Date: Oct 2024
+"""Basic script extracting data from a csv file and appending it to an output file 
+"""
+
+__appname__ = 'boilerplate.py'
+__author__ = 'Georgina Chow (georgina.chow20@imperial.ac.uk)'
+__version__ = '3.12.3'
 
 #########################
 # FILE INPUT 
