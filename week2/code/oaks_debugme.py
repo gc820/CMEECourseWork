@@ -18,8 +18,16 @@ def is_an_oak(name):
     True
     >>> is_an_oak('Fagus sylvatica')
     False
+    >>> is_an_oak('Quercus robur')
+    True
+    >>> is_an_oak('querc')
+    False
     """
-    return name.lower() == 'quercus'
+
+    # Normalize the input by stripping whitespace and converting to lowercase
+    normalized_name = name.lower().strip()
+    return normalized_name == 'quercus' or normalized_name.startswith('quercus ')
+    # Checks for both exact matches of quercus 
 
 def main(argv): 
     f = open('../data/TestOaksData.csv','r')
@@ -32,12 +40,15 @@ def main(argv):
 
     for row in taxa:
         print(row)
-        print ("The genus is: ") 
+        print ("The genus is:") 
         print(row[0] + '\n')
+        
         if is_an_oak(row[0]):
             print('FOUND AN OAK!\n')
             #import ipdb; ipdb.set_trace()
             csvwrite.writerow([row[0], row[1]])    
+    f.close()
+    g.close()
 
     return 0
     
