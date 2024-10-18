@@ -1,35 +1,50 @@
-CMEE Coursework: Week 1
+# CMEE Coursework: Week 1
 
-Description: Week 1 CMEE bootcamp coursework and class files: Unix & Linux, shell scripting, version control with Git, scientific documents with LaTeX 
+## Description
+Week 1 CMEE bootcamp coursework and class files covering:
+- Unix & Linux
+- Shell scripting
+- Version control with Git
+- Scientific documents with LaTeX
 
-Languages: Bash (version 5.2.21(1), LaTeX
+## Languages
+- Bash (version 5.2.21(1))
+- LaTeX
 
-Dependencies: N/A
+## Dependencies
+N/A
 
-Project structure and Usage: Project follows the structured bootcamp content covered within the module:
-Code:
-    boilerplate.sh - simple example script 
-    CompileLaTeX.sh - Compiles latex and bibtex into a pdf and cleans up intermediate files 
-    ConcatenateTwoFiles.sh - merges two files into a new file and checks 3 files have been inputted
-    CountLines.sh - Counts the number of lines in the file 
-    csvtospace.sh - Converts csv files "," into " " ssv files, checking that only 1 csv file has been inputted 
-    tabtocsv.sh - Converts tab .txt files " " into "," csv files 
-    FirstBiblio.bib - Reference for bibliography 
-    FirstExample.tex - Code for example LaTeX compiled document 
-    MyExampleScript.sh - Example script 
-    tabtocsv.sh - Creates a new file and converts tabs to commas in input file 
-    tiff2png.sh - Converts .tiff to .png files 
-    UnixPrac1.txt - Unix practical coursework code 
-    variables.sh - Example script asking for user inputs 
-Data: 
-    1800.csv
-    1801.csv
-    1802.csv
-    1803.csv
-    407228326.fasta
-    407228412.fasta
-    E.coli.fasta
-    spawannxs.txt
-Results:
+## Project Structure and Usage
+The project follows the structured bootcamp content covered within the module. The files are organized as follows:
 
-Author name and contact: Georgina Chow, georgina.chow20@imperial.ac.uk
+### Code
+- `boilerplate.sh`: Simple example script.
+- `CompileLaTeX.sh`: Compiles LaTeX and BibTeX into a PDF and cleans up intermediate files.
+- `ConcatenateTwoFiles.sh`: Merges two files into a new file and checks that three files have been inputted.
+- `CountLines.sh`: Counts the number of lines in a file.
+- `csvtospace.sh`: Converts CSV files (",") into space-separated values (SSV) files, checking that only one CSV file has been inputted.
+- `tabtocsv.sh`: Converts tab-separated .txt files (" ") into CSV files (",").
+- `FirstBiblio.bib`: Reference for bibliography.
+- `FirstExample.tex`: Code for an example LaTeX compiled document.
+- `MyExampleScript.sh`: Example script.
+- `tiff2png.sh`: Converts .tiff files to .png files.
+- `UnixPrac1.txt`: Unix practical coursework code.
+- `variables.sh`: Example script asking for user inputs.
+
+### Data
+- `1800.csv`
+- `1801.csv`
+- `1802.csv`
+- `1803.csv`
+- `407228326.fasta`
+- `407228412.fasta`
+- `E.coli.fasta`
+- `spawannxs.txt`
+
+## Results
+N/A
+
+## Author
+Georgina Chow  
+Email: [georgina.chow20@imperial.ac.uk](mailto:georgina.chow20@imperial.ac.uk)
+
