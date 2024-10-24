@@ -1,7 +1,7 @@
 *~ 
 *.tmp
 week*/sandbox/
-results/
-!**/results/.gitkeep
-!week3/results/
+#results/
+#!**/results/.gitkeep
+#!week3/results/
 __pycache__/
