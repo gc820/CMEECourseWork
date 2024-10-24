@@ -3,4 +3,5 @@
 sandbox/
 results/*
 !*/results/.gitkeep
+!*/results/
 __pycache__/
