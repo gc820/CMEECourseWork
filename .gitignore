@@ -1,7 +1,6 @@
 *~ 
 *.tmp
 sandbox/
-results/*
-!*/results/.gitkeep
-!*/results/
+results/
+!**/results/.gitkeep
 __pycache__/
