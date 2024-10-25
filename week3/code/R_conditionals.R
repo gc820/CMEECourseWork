@@ -1,5 +1,22 @@
 #!/usr/bin/env Rscript
 
+# File: R_conditionals.R
+# Author: Georgina Chow georgina.chow20@imperial.ac.uk
+# Date: Oct 2024
+# Description: This script includes functions that use conditionals to evaluate properties 
+#              of numbers, such as whether they are even, powers of 2, or prime numbers.
+
+# Usage:
+# Run this script from an R session or command line.
+# Example usage in R:
+#   source("R_conditionals.R")
+#   is.even(6)         # Checks if 6 is even
+#   is.power2(4)       # Checks if 4 is a power of 2
+#   is.prime(3)        # Checks if 3 is a prime number
+
+# Dependencies:
+#   Uses base R functions only; no additional packages are required.
+
 ##Functions with conditionals## 
 
 # Checks if an integer is even 

@@ -5,9 +5,9 @@ Git repository for CMEE bootcamp coursework and class files.
 
 ## Languages
 - Bash (version 5.2.21(1))
-- Python 3.12.3
+- Python (version 3.12.3)
 - LaTeX
-- R 4.3.3
+- R (version 4.3.3)
 
 ## Dependencies
 **Python**: Requires Python 3.12.3 and utilizes the following standard library modules:
@@ -15,7 +15,7 @@ Git repository for CMEE bootcamp coursework and class files.
 - `sys`: For interacting with the Python interpreter and command-line arguments.
 - `doctest`: For testing code embedded in docstrings.
 
-No additional installations are necessary as these modules are included with Python's standard library.
+No additional installations are necessary as these modules are included with the Python and R standard library.
 
 ## Installation
 N/A

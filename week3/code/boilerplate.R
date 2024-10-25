@@ -1,5 +1,22 @@
 #!/usr/bin/env Rscript
 
+# File: boilerplate.R
+# Author: Georgina Chow georgina.chow20@imperial.ac.uk
+# Date: Oct 2024
+# Description: This is a boilerplate R script that defines a simple function, `MyFunction`,
+#              which accepts two arguments, prints their values and types, and returns them as a vector.
+
+# Usage:
+# Run this script from an R session or command line.
+# Example usage in R:
+#   source("boilerplate.R")
+#   MyFunction(1, 2)             # Test with numeric arguments
+#   MyFunction("Riki", "Tiki")    # Test with character arguments
+
+# Dependencies:
+#   Uses base R functions only; no additional packages are required.
+
+
 # A boilerplate R script 
 
 MyFunction <- function(Arg1, Arg2) {

@@ -1,3 +1,25 @@
+#!/usr/bin/env Rscript
+
+# File: DataWrang.R
+# Author: Georgina Chow georgina.chow20@imperial.ac.uk
+# Date: Oct 2024
+# Description: This script performs data wrangling on the Pound Hill dataset, converting 
+#              raw data to a tidy format suitable for analysis. It involves transposing 
+#              data, replacing missing values, converting to long format, and applying 
+#              basic summary statistics.
+
+# Usage:
+# Run this script from an R session or command line.
+# Example usage in R:
+#   source("DataWrang.R")
+#   # The script loads data, performs wrangling steps, and outputs a summary.
+
+# Dependencies:
+#   Requires `reshape2` and `tidyverse` packages for data manipulation.
+#   Install if needed: 
+#       install.packages("reshape2")
+#       install.packages("tidyverse")
+
 ################################################################
 ################## Wrangling the Pound Hill Dataset ############
 ################################################################

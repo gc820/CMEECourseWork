@@ -1,8 +1,34 @@
 #!/usr/bin/env Rscript
 
+# File: MyBars.R
+# Author: Georgina Chow georgina.chow20@imperial.ac.uk
+# Date: Oct 2024
+# Description: This script creates a bar plot with annotated line ranges using `ggplot2`. 
+#              It customizes axis labels, removes the legend, and outputs the plot as a PDF.
+
+# Usage:
+# Run this script from an R session or command line.
+# Example usage in R:
+#   source("MyBars.R")
+#   # The script will generate a line range plot and save it to `../results/MyBars.pdf`.
+
+# Dependencies:
+#   Requires `ggplot2` package for plotting.
+#   Install if needed: install.packages("ggplot2")
+
+# Ensure dataset `a` is defined with columns `x`, `y2`, `y3`, and `Label`
+# Example data structure:
+# a <- data.frame(x = ..., y2 = ..., y3 = ..., Label = ...)
+
+# Load necessary library
+library(ggplot2)
+
+#Add a column of zeros for ymin in dataset 'a'
 a$ymin <- rep(0, dim(a)[1]) # append a column of zeros 
+
 #print the first linerange 
 p <- ggplot(a)
+
 p <- p + geom_linerange(data = a, aes(
                         x = x, ymin = ymin, 
                         ymax = y2, 

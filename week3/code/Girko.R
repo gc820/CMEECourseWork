@@ -1,5 +1,26 @@
 #!/usr/bin/env Rscript
 
+# File: Girko.R
+# Author: Georgina Chow georgina.chow20@imperial.ac.uk
+# Date: Oct 2024
+# Description: This script visualizes the eigenvalues of a random matrix using the 
+#              Girko circular law. It generates a scatter plot of the eigenvalues 
+#              overlaid with an ellipse representing the theoretical boundary.
+
+# Usage:
+# Run this script from an R session or command line.
+# Example usage in R:
+#   source("Girko.R")
+#   # The script will generate a plot of eigenvalues with an overlayed ellipse and 
+#   # save it to `../results/Girko.pdf`.
+
+# Dependencies:
+#   Requires `ggplot2` package for plotting.
+#   Install if needed: install.packages("ggplot2")
+
+# Load necessary library
+library(ggplot2)
+
 # Plotting two dataframes together 
 build_ellipse <- function(hradius, vradius){  #function that returns an ellipse 
     npoints = 250

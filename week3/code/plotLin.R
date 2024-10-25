@@ -1,5 +1,21 @@
 #!/usr/bin/env Rscript
 
+# File: plotLin.R
+# Author: Georgina Chow georgina.chow20@imperial.ac.uk
+# Date: Oct 2024
+# Description: This script generates a scatter plot of simulated data with a linear 
+#              regression line and mathematical annotations. It outputs the plot as a PDF.
+
+# Usage:
+# Run this script from an R session or command line.
+# Example usage in R:
+#   source("plotLin.R")
+#   # The script generates a linear regression plot and saves it to `../results/MyLinReg.pdf`.
+
+# Dependencies:
+#   Requires `ggplot2` package for plotting.
+#   Install if needed: install.packages("ggplot2")
+
 ## Linear regression plot annotation 
 # Mathematical display 
 

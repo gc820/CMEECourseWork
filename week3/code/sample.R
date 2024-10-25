@@ -1,5 +1,29 @@
 #!/usr/bin/env Rscript
 
+
+# File: sample.R
+# Author: Georgina Chow georgina.chow20@imperial.ac.uk
+# Date: Oct 2024
+# Description: This script includes functions to calculate the mean of a sample 
+#              drawn from a population, using various methods for iteration and 
+#              vectorization. These functions demonstrate performance comparisons 
+#              between methods such as loops with and without preallocation, 
+#              as well as vectorized approaches using `lapply` and `sapply`.
+
+# Usage:
+# Run this script from an R session or command line.
+# Example usage in R:
+#   source("sample.R")
+#   popn <- rnorm(1000)            # Define a population of 1000 random values
+#   n <- 30                        # Sample size
+#   num <- 50                      # Number of iterations
+#   result1 <- loopy_sample1(popn, n, num)  # Without preallocation
+#   result2 <- loopy_sample2(popn, n, num)  # With preallocation
+#   result4 <- lapply_sample(popn, n, num)  # Using lapply
+
+# Dependencies:
+#   Uses base R functions only; no additional packages are required.
+
 ############### Functions ################
 
 ## A function to tale a sample of size n from a population "popn" and return its mean
