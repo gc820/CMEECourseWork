@@ -23,6 +23,8 @@
 # Load necessary library
 library(ggplot2)
 
+a <- read.table("../data/Results.txt", header = TRUE)
+
 #Add a column of zeros for ymin in dataset 'a'
 a$ymin <- rep(0, dim(a)[1]) # append a column of zeros 
 
