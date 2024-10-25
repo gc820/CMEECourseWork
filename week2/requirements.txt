@@ -1,0 +1,5 @@
+# Requirements for Week 2 CMEE Coursework in Python 
+
+pandas==1.5.3
+numpy==1.24.3
+biopython==1.81

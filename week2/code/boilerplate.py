@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 """Description of this program or application. 
 You can use several lines""" 
 

@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 """Writing a program with control flows"""
 
 __appname__ = 'cfexercises1.py'

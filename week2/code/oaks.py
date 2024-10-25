@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 """Identifies oak species from a predefined list of taxa"""
 
 __appname__ = 'oaks.py'

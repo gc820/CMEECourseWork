@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 """Demonstrates the concept of variable scope of local and global variables"""
 
 __appname__ = 'scope.py'

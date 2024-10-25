@@ -4,13 +4,22 @@
 This repository contains a collection of R scripts from the Week 3 CMEE bootcamp coursework. These files cover essential data processing, control flow, and visualization techniques in R.
 
 ## Languages
-R (version 4.3.3, or later recommended)
+- **R**: (version 4.3.3, or later recommended)
 
 ## Dependencies
-Some scripts require additional packages:
-```r
-install.packages(c("ggplot2", "dplyr", "tidyr"))
+The R scripts in this repository may require the following packages for data processing, control flow, and visualization:
+
+- **dplyr**: For efficient data manipulation and transformation.
+- **ggplot2**: For creating visualizations.
+- **tidyr**: For data tidying and reshaping.
+- **readr**: For reading in CSV and other text files.
+
+To install any of these packages, you can run:
+```R
+install.packages(c("dplyr", "ggplot2", "tidyr", "readr"))
 ```
+The dependencies are listed in requirements.txt file. 
+
 No additional installations are necessary for scripts using only base R functions.
 
 ## Project Structure and Usage 

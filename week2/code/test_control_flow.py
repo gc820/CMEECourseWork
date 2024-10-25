@@ -1,6 +1,10 @@
+#!/usr/bin/env python
+
 """Some funtions exemplifying the use of control statements""" 
+
 #docstrings are considered part of the running code (normal comments are
 #stripped). Hence, you can access your dostrings at run time. 
+
 __appname__ = 'boilerplate.py'
 __author__ = 'Georgina Chow (georgina.chow20@imperial.ac.uk)'
 __version__ = '3.12.3'

@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 """Demonstrates the use of sys.argv module in python"""
 
 __appname__ = 'sysargv.py'

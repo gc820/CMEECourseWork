@@ -1,0 +1,6 @@
+# Requirements for Week 3 CMEE Coursework in R
+
+dplyr
+ggplot2
+tidyr
+readr

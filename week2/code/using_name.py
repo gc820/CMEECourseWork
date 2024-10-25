@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 """Demonstrates use of special __name__ variable in Python"""
 
 __appname__ = 'using_name.py'

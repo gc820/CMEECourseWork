@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 """List comprehensions 1"""
 
 __appname__ = 'lc1.py'

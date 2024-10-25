@@ -1,6 +1,8 @@
+#!/usr/bin/env python
+
 """Program to find the best alignment of 2 DNA sequences"""
 
-__appname__ = 'boilerplate.py'
+__appname__ = 'align_seqs.py'
 __author__ = 'Georgina Chow (georgina.chow20@imperial.ac.uk)'
 __version__ = '3.12.3'
 

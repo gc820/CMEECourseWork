@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 """Processes taxa list and creates a dictionary"""
 
 __appname__ = 'dictionary.py'

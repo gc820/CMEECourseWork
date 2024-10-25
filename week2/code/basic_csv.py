@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 """Handling basic CSV files"""
 
 __appname__ = 'basic_csv.py'

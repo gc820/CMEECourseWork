@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 """Loops example scripts"""
 
 __appname__ = 'loops.py'

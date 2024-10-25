@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 """Function use in python example"""
 
 __appname__ = 'MyExampleScript.py'
@@ -7,6 +9,7 @@ __version__ = '3.12.3'
 # Running Python Scripts 
 
 def foo(x):
+    """Function to print the square of x"""
     x *= x  # same as x = x*x 
     print(x)
 

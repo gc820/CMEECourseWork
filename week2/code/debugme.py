@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 """Demonstration of deugging techniques in python programs"""_
 
 __appname__ = 'debugme.py'

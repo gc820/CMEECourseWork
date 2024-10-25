@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 """Some funtions exemplifying the use of control statements""" 
 #docstrings are considered part of the running code (normal comments are
 #stripped). Hence, you can access your dostrings at run time. 

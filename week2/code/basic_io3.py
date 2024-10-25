@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 """Basic program how to serialize and deserialize a dictionary"""
 
 __appname__ = 'basic_io3.py'
@@ -11,6 +13,7 @@ __version__ = '3.12.3'
 my_dictionary = {"a key": 10, "another key": 11}
 
 import pickle 
+
 f = open('../sandbox/testp.p', 'wb') ## not the b: accept binary files 
 pickle.dump(my_dictionary, f) # Serialize the dictionary & write it to the file 
 f.close()

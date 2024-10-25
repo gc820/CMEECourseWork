@@ -1,5 +1,6 @@
-"""Basic script extracting data from a csv file and appending it to an output file 
-"""
+#!/usr/bin/env python
+
+"""Basic script extracting data from a csv file and appending it to an output file """
 
 __appname__ = 'boilerplate.py'
 __author__ = 'Georgina Chow (georgina.chow20@imperial.ac.uk)'
