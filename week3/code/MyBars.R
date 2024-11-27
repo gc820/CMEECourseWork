@@ -3,8 +3,8 @@
 # File: MyBars.R
 # Author: Georgina Chow georgina.chow20@imperial.ac.uk
 # Date: Oct 2024
-# Description: This script creates a bar plot with annotated line ranges using `ggplot2`. 
-#              It customizes axis labels, removes the legend, and outputs the plot as a PDF.
+# Description: Creates a bar plot with annotated line ranges using ggplot2. 
+#              Outputs the plot as a PDF.
 
 # Usage:
 # Run this script from an R session or command line.

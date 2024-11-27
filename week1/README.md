@@ -8,8 +8,8 @@ This repository contains Week 1 CMEE bootcamp coursework and class files coverin
 - Scientific documents with LaTeX
 
 ## Languages
-- Bash (version 5.2.21(1))
-- LaTeX
+- **Bash** (version 5.2.21(1))
+- **LaTeX**
 
 ## Dependencies
 None required
@@ -29,12 +29,12 @@ Place input data files in the `data` folder. Run any script by loading it with `
 Each script is self-contained. Run any script by executing `bash <filename>.sh`.
 
 - **boilerplate.sh**: Basic template script with a simple function.
-  - **Input**: None required.
-  - **Output**: Simple console output.
+  - **Input**: None
+  - **Output**: Output printed to console.
 
 - **CompileLaTeX.sh**: Compiles a LaTeX document along with BibTeX and generates a PDF output, cleaning up intermediate files.
   - **Input**: `.tex` and `.bib` files.
-  - **Output**: PDF file.
+  - **Output**: PDF file to results folder.
 
 - **ConcatenateTwoFiles.sh**: Merges two files into a single file; checks that exactly three files are provided as arguments.
   - **Input**: Two input files.
@@ -46,15 +46,15 @@ Each script is self-contained. Run any script by executing `bash <filename>.sh`.
 
 - **csvtospace.sh**: Converts a CSV (comma-separated) file into a space-separated values (SSV) file.
   - **Input**: One CSV file.
-  - **Output**: Converted SSV file.
+  - **Output**: Converted SSV file saved to results.
 
 - **tabtocsv.sh**: Converts tab-separated `.txt` files into comma-separated CSV files.
   - **Input**: One tab-separated text file.
-  - **Output**: CSV file.
+  - **Output**: CSV file saved to results.
 
 - **tiff2png.sh**: Converts `.tiff` images to `.png` format.
   - **Input**: One `.tiff` file.
-  - **Output**: `.png` file.
+  - **Output**: `.png` file saved to results.
 
 - **variables.sh**: A sample script that takes user input and prints it.
   - **Input**: User input provided at runtime.

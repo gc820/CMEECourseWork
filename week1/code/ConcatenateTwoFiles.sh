@@ -9,7 +9,7 @@
 if [ "$#" -ne 3 ] ; then 
 # Checks if the number of input files is not equal to 3
     echo "Error: You need to provide two input files and one output file."
-    exit 1
+    return 1
 else 
     inputfolder="../data" # Specify the input folder
     outputfolder="../results" # Specify the output folder 
@@ -18,6 +18,17 @@ else
     inputfile1="$inputfolder/$1"
     inputfile2="$inputfolder/$2"
     outputfile="$outputfolder/$(basename "$3")"
+
+    # Check if input files exist
+    if [ ! -f "$inputfile1" ]; then
+        echo "Error: Input file '$inputfile1' does not exist."
+        return 1
+    fi
+    
+    if [ ! -f "$inputfile2" ]; then
+        echo "Error: Input file '$inputfile2' does not exist."
+        return 1
+    fi
     
     # Concatenate the first file into the output file in the results folder
     cat "$inputfile1" > "$outputfile"
@@ -28,5 +39,5 @@ else
     echo "Merged file is located within: $outputfile"
 
     cat $outputfile 
-    exit 
+    return 
 fi

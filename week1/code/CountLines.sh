@@ -13,7 +13,7 @@ if [ "$#" -ne 1 ] ; then
     exit 1
 else 
     echo "File: $file"
-    NumLines=`wc -l < $file`
+    NumLines=$(wc -l < "$file")
     echo "Line count: $NumLines"
     echo "The file $file has $NumLines lines"  
 

@@ -19,7 +19,11 @@ outputfolder="../results"
 if [ "$#" -ne 1 ] ; then 
 # Checks if the number of input files is not equal to 1
     echo "Error: You need to provide one input file only."
-    exit 1
+    return 1
+elif [ ! -f "$file" ]; then
+    # Checks if the input file does not exist
+    echo "Error: The file '$file' does not exist."
+    return 1
 else 
     filename=$(basename "$file")
     # Extracts the filename from the path (to use in results folder)
