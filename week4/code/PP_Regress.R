@@ -25,10 +25,17 @@
 #     install.packages(c("ggplot2", "tidyr", "dplyr", "broom"))
 
 
+library(tidyr)
+library(dplyr)
+
+# Load data
 MyDF <- as.data.frame(read.csv("../data/EcolArchives-E089-51-D1.csv"))
+
+# Convert Predator.lifestage to a factor for grouping and labeling
 MyDF$Predator.lifestage <- as.factor(MyDF$Predator.lifestage)
 
-p1<-ggplot(MyDF, aes(y = Predator.mass, x = Prey.mass, 
+# Create scatter plot with regression lines
+p1 <- ggplot(MyDF, aes(y = Predator.mass, x = Prey.mass, 
     colour = Predator.lifestage)) +
     geom_point(shape = 3) +
     geom_smooth(method="lm", se=TRUE, aes(group=Predator.lifestage), 
@@ -47,12 +54,10 @@ p1<-ggplot(MyDF, aes(y = Predator.mass, x = Prey.mass,
     guides(colour = guide_legend(nrow = 1)) +
     coord_fixed(ratio = 0.3)  # Adjust ratio to make facets narrower
 
+# Save scatter plot to PDF
 pdf("../results/PP_Regress.pdf")
+print(p1)
 dev.off()
-
-# Collect the results of the linear model 
-library(tidyr)
-library(dplyr)
 
 # Convert prey mass mg to g 
 MyDF <- MyDF %>%
@@ -64,16 +69,21 @@ MyDF <- MyDF %>%
     )
 )
 
+# Perform group-wise linear regression analysis
 results <- MyDF  %>%  
     group_by(Type.of.feeding.interaction, Predator.lifestage)  %>% 
-    # .x = data for current group, .y contains grouping key (unique combination of the group_by categories)
+    # .x = data for current group
+    # .y =  grouping key (unique combination of the group_by categories)
     group_modify(function(.x, .y){
         if(nrow(.x) >= 3) {  # Creates model for more than 3 data points
             # Fit linear model for group 
-            model_summary <- summary(lm(log(Predator.mass) ~ log(Prey.mass), data= .x))
+            model_summary <- summary(lm(log(Predator.mass) ~ log(Prey.mass), 
+                data= .x))
             # Extract coefficients 
-            intercept <- round(model_summary$coefficients["(Intercept)", "Estimate"], digits=3)
-            slope <- round(model_summary$coefficients["log(Prey.mass)", "Estimate"], digits=3)
+            intercept <- round(model_summary$coefficients["(Intercept)", 
+                "Estimate"], digits=3)
+            slope <- round(model_summary$coefficients["log(Prey.mass)", 
+                "Estimate"], digits=3)
             r_squared <- round(model_summary$r.squared, digits=3)
             p_value <- model_summary$coefficients["log(Prey.mass)", "Pr(>|t|)"]
             p_value <- ifelse(
@@ -91,6 +101,7 @@ results <- MyDF  %>%
                 comment = NA
             )
         } else {
+            # Return values for groups with insufficient data
             data.frame(
                 n = nrow(.x),
                 intercept = NA,
@@ -105,5 +116,5 @@ results <- MyDF  %>%
 
 view(results)
 
-# Save results
+# Save regression results to CSV
 write.csv(results, "../results/PP_Regress_Results.csv", row.names = FALSE)

@@ -25,7 +25,10 @@
 library(tidyr)
 library(dplyr)
 
+# Load data
 MyDF <- as.data.frame(read.csv("../data/EcolArchives-E089-51-D1.csv"))
+
+# Convert Predator.lifestage & Location factors for grouping and labeling
 MyDF$Predator.lifestage <- as.factor(MyDF$Predator.lifestage)
 MyDF$Location <- as.factor(MyDF$Location)
 
@@ -39,16 +42,21 @@ MyDF <- MyDF %>%
     )
 )
 
+# Collect the results of the linear model
 results <- MyDF  %>%  
     group_by(Location, Type.of.feeding.interaction, Predator.lifestage)  %>% 
-    # .x = data for current group, .y contains grouping key (unique combination of the group_by categories)
+    # .x = data for current group
+    # .y = grouping key (unique combination of the group_by categories)
     group_modify(function(.x, .y){
         if(nrow(.x) >= 3) {  # Creates model for more than 3 data points
             # Fit linear model for group 
-            model_summary <- summary(lm(log(Predator.mass) ~ log(Prey.mass), data= .x))
+            model_summary <- summary(lm(log(Predator.mass) ~ log(Prey.mass), 
+                data= .x))
             # Extract coefficients 
-            intercept <- round(model_summary$coefficients["(Intercept)", "Estimate"], digits=3)
-            slope <- round(model_summary$coefficients["log(Prey.mass)", "Estimate"], digits=3)
+            intercept <- round(model_summary$coefficients["(Intercept)", 
+                "Estimate"], digits=3)
+            slope <- round(model_summary$coefficients["log(Prey.mass)", 
+                "Estimate"], digits=3)
             r_squared <- round(model_summary$r.squared, digits=3)
             p_value <- model_summary$coefficients["log(Prey.mass)", "Pr(>|t|)"]
             p_value <- ifelse(
@@ -66,6 +74,7 @@ results <- MyDF  %>%
                 comment = NA
             )
         } else {
+            # Return values for groups with insufficient data
             data.frame(
                 n = nrow(.x),
                 intercept = NA,

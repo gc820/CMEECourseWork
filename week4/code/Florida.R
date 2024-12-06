@@ -22,14 +22,22 @@
 
 # Load & examine the annual temperature dataset
 rm(list=ls())
+
+# Check if the data file exists
+if (!file.exists("../data/KeyWestAnnualMeanTemperature.RData")) {
+    handle_error("Data file '../data/KeyWestAnnualMeanTemperature.RData' not found.")
+}
+
+# Load in and inspect the data 
 load("../data/KeyWestAnnualMeanTemperature.RData")
-ls()
 class(ats)
 head(ats)
 plot(ats)
 
+# Load required libraries 
 library(ggplot2)
 
+# Plot scatter graph and save as pdf to the results folder
 pdf("../results/Temp_Year_florida.pdf", width=7, height=5)
 ggplot(data=ats, aes(x=Year, y=Temp)) + 
     geom_point(colour="#222285") + 
@@ -77,6 +85,7 @@ dev.off()
 # Calculating the ratio of the numer of values above the original correlation
 # Checks each value to see if meets condition (TRUE/FALSE)
 count_greater <- sum(simul_list >= orig_cor) # Returns number of times TRUE 
+
 # Calculates the ratio/approx., asymptotic p-value 
 ratio <- count_greater / length(simul_list)
 print(ratio)

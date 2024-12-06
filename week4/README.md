@@ -2,6 +2,7 @@
 
 ## Description
 This repository contains a collection of R scripts, Python files, and LaTeX examples from the Week 4 CMEE bootcamp coursework. These files demonstrate statistical modeling, time-series analysis, tree height computation, and integrations with Python and LaTeX. Additionally, a Jupyter Notebook example showcasing Python scripting is included.
+
 ## Languages
 - **R**: (version 4.3.3)
 - **Python**: (version 3.12.3) 
@@ -16,8 +17,9 @@ The R scripts in this repository require the following packages:
 - **ggplot2**: Visualizations.
 - **stats**: Built-in statistical functions.
 - **readr**: Reading and writing data files.
-- **tidyr**: For tidying and reshaping data
-- **broom**: For tidying statistical outputs
+- **tidyr**: For tidying and reshaping data.
+- **broom**: For tidying statistical outputs.
+- **cowplot**: Visualizations.
 
 Install required R packages by running:
 ```r
@@ -25,7 +27,7 @@ install.packages(c("dplyr", "ggplot2", "readr"))
 ```
 
 ### Python
-- Python packages as defined in the notebook.
+- Python packages as defined in the (Jupyter) notebook.
 
 ### LaTeX
 - Use a LaTeX editor or CLI to compile (e.g., `pdflatex Florida.tex`).
@@ -41,9 +43,9 @@ The project structure follows the bootcamp module organization, with folders org
 Each script is self-contained - run scripts by using `run <filename>.py` or `source("<filename>.R")`.
 N.B. There is a script (`FloridaLaTeX.sh`) to compile the LaTeX file into the final pdf format. 
 
-- **Florida.R**: Processes data from Florida temperatures data file `KeyWestAnnualMeanTemperature.RData`and produces the final graph to be used in the `Florida.tex` final pdf document.
+- **Florida.R**: Analyzes annual mean temperature data from Florida,`KeyWestAnnualMeanTemperature.RData`and produces the final graph to be used in the `Florida.tex` final pdf document.
   - **Input**: Uses dataset `KeyWestAnnualMeanTemperature.RData`.
-  - **Output**: Processes results and prints outputs to console, saving pdf (`Temp_Year_florida.pdf`) of graph to the results folder
+  - **Output**: Scatter plot with regression line saved as `../results/Temp_Year_florida.pdf`, histogram of shuffled correlations saved as `../results/hist_florida.pdf`, original correlation, p-value, and ratio (asymptotic p-value) printed to the console
   - **Usage**: `source("Florida.R")`
   - **Dependencies**: `ggplot2`
   
@@ -62,24 +64,23 @@ N.B. There is a script (`FloridaLaTeX.sh`) to compile the LaTeX file into the fi
   - **Output**: Prints message to the terminal 
   - **Dependencies**: Jupyter Notebook/JupyterLab, Python3
 
-- **PP_Regress.R**: Performs regression analysis on predator-prey data and produces csv file of regression statistics.
+- **PP_Regress.R**: Performs regression analysis of predator-prey mass relationships and produces CSV file of regression statistics.
   - **Input**: Predator-prey dataset (`EcolArchives-E089-51-D1.csv`).
   - **Output**: Writes regression results to csv file in results folder.
   - **Usage**: `source("PP_Regress.R")`
-  - **Dependencies**: `tidyr`, `dplyr`, `broom`
+  - **Dependencies**: `ggplot2`, `tidyr`, `dplyr`, `broom`
 
-- **PP_Regress_loc.R**: Location-specific regression analysis on predator-prey data and produces csv file of regression statistics.
+- **PP_Regress_loc.R**: Location-specific regression analysis on predator-prey data - performs linear regression analyses on predator-prey mass relationships, grouped by location, feeding interaction type, and predator life stage.
   - **Input**: Predator-prey dataset (`EcolArchives-E089-51-D1.csv`).
-  - **Output**: Writes location-specific regression results to csv file in results folder.
-  - **Usage**: `source("PP_Regress_loc.R")`
+  - **Output**: A CSV file containing location-specific regression results (`../results/PP_Regress_loc_Results.csv`).
+  - **Usage**: `Rscript PP_Regress_loc.R`
   - **Dependencies**: `tidyr`, `dplyr`, `broom`
 
-- **TAutoCorr.R**: Time-series autocorrelation analysis.
-  - **Input**: Time-series data (`KeyWestAnnualMeanTemperature.RData`).
-  - **Output**: Autocorrelation metrics printed to console.
-  - **Usage**: `source("TAutoCorr.R")`
-  - **Dependencies**: None
-
+- **TAutoCorr.R**: Time-series autocorrelation analysis on Florida weather data, including a permutation test to approximate a p-value and visualizes the results.
+  - **Input**: Florida weather data (`KeyWestAnnualMeanTemperature.RData`).
+  - **Output**: Produces a scatterplot showing the relationship between temperatures of successive years, a histogram of the distribution of correlation coefficients from the permutation test. P-value printed to the console.
+  - **Usage**: `Rscript TAutoCorr.R`
+  - **Dependencies**: `ggplot2`, `cowplot`
 
 ## Data
 Datasets available in the `.../data/` folder for running scripts:
