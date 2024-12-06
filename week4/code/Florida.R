@@ -67,10 +67,11 @@ for (i in 1:num_simul) {
 print(paste("Original correlation: ", orig_cor))
 summary(simul_list)
 
+pdf("../results/hist_florida.pdf", width=6, height=5)
 hist(simul_list, main = "Histogram of Shuffled Correlations",
      xlab = "Correlation Coefficient", breaks = 30)
-
 abline(v=orig_cor, col="red", lwd=2,lty=2)
+dev.off()
 
 
 # Calculating the ratio of the numer of values above the original correlation

@@ -1,6 +1,11 @@
 #!/usr/bin/env python
 
-"""Identifies oak species based on genus name from file"""
+"""Identifies oak species based on their genus name from a CSV file and writes the
+results to another CSV file.
+
+Input: ../data/TestOaksData.csv
+Output: ../results/JustOaksData.csv
+"""
 
 __appname__ = 'oaks_debugme.py'
 __author__ = 'Georgina Chow (georgina.chow20@imperial.ac.uk)'
@@ -23,6 +28,14 @@ def is_an_oak(name):
     True
     >>> is_an_oak('querc')
     False
+    >>> is_an_oak('QuErCuS')
+    True
+    >>> is_an_oak('   Quercus alba   ')
+    True
+    >>> is_an_oak('Quercus123')
+    False
+    >>> is_an_oak('')
+    False
     """
 
     # Normalize the input by stripping whitespace and converting to lowercase
@@ -32,25 +45,43 @@ def is_an_oak(name):
 
 def main(argv): 
     """Defines the main argument and writes output file"""
-    f = open('../data/TestOaksData.csv','r')
-    g = open('../results/JustOaksData.csv','w')
-    taxa = csv.reader(f)
-    csvwrite = csv.writer(g)
-    oaks = set()
+    try:
+        f = open('../data/TestOaksData.csv','r')
+    except FileNotFoundError:
+        print("Error: The input file '../data/TestOaksData.csv' was not found.")
+        sys.exit(1)
+    except PermissionError:
+        print("Error: Permission denied when trying to read '../data/TestOaksData.csv'.")
+        sys.exit(1)
 
-    next(taxa) # Skips the header row 
+    try:
+        g = open('../results/JustOaksData.csv','w')
+    except PermissionError:
+        print("Error: Permission denied when trying to write '../results/JustOaksData.csv'.")
+        sys.exit(1)
 
-    for row in taxa:
-        print(row)
-        print ("The genus is:") 
-        print(row[0] + '\n')
-        
-        if is_an_oak(row[0]):
-            print('FOUND AN OAK!\n')
-            #import ipdb; ipdb.set_trace()
-            csvwrite.writerow([row[0], row[1]])    
-    f.close()
-    g.close()
+    try:
+        taxa = csv.reader(f)
+        csvwrite = csv.writer(g)
+        #oaks = set()
+
+        next(taxa) # Skips the header row 
+
+        for row in taxa:
+            print(row)
+            print ("The genus is:") 
+            print(row[0] + '\n')
+            
+            if is_an_oak(row[0]):
+                print('FOUND AN OAK!\n')
+                #import ipdb; ipdb.set_trace()
+                csvwrite.writerow([row[0], row[1]])    
+    except csv.Error as e: 
+        print(f"Error:Issue with csv format - {e}")
+        sys.exit(1)
+    finally:
+        f.close()
+        g.close()
 
     return 0
     

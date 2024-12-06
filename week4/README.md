@@ -1,12 +1,12 @@
 # CMEE Coursework: Week 4
 
 ## Description
-This repository contains a collection of R scripts and related files from the Week 4 CMEE bootcamp coursework. These files cover statistical modeling, time-series analysis, tree height computation, and basic Python and LaTeX integrations.
-
+This repository contains a collection of R scripts, Python files, and LaTeX examples from the Week 4 CMEE bootcamp coursework. These files demonstrate statistical modeling, time-series analysis, tree height computation, and integrations with Python and LaTeX. Additionally, a Jupyter Notebook example showcasing Python scripting is included.
 ## Languages
 - **R**: (version 4.3.3)
 - **Python**: (version 3.12.3) 
 - **LaTeX**
+- **Jupyter Notebook or JupyterLab**
 
 ## Dependencies
 
@@ -16,8 +16,8 @@ The R scripts in this repository require the following packages:
 - **ggplot2**: Visualizations.
 - **stats**: Built-in statistical functions.
 - **readr**: Reading and writing data files.
-- **tidyr**
-- **broom**
+- **tidyr**: For tidying and reshaping data
+- **broom**: For tidying statistical outputs
 
 Install required R packages by running:
 ```r
@@ -39,14 +39,30 @@ The project structure follows the bootcamp module organization, with folders org
 
 ## Code Descriptions
 Each script is self-contained - run scripts by using `run <filename>.py` or `source("<filename>.R")`.
+N.B. There is a script (`FloridaLaTeX.sh`) to compile the LaTeX file into the final pdf format. 
 
-- **Florida.R**: Processes data from Florida temperatures data file `KeyWestAnnualMeanTemperature.RData`.
+- **Florida.R**: Processes data from Florida temperatures data file `KeyWestAnnualMeanTemperature.RData`and produces the final graph to be used in the `Florida.tex` final pdf document.
   - **Input**: Uses dataset `KeyWestAnnualMeanTemperature.RData`.
   - **Output**: Processes results and prints outputs to console, saving pdf (`Temp_Year_florida.pdf`) of graph to the results folder
   - **Usage**: `source("Florida.R")`
   - **Dependencies**: `ggplot2`
+  
+- **Florida.tex**: LaTeX document file, with written analysis taken from tests run in `Florida.R`.
+  - **Input**: Runs files from `Florida.R` and the pdf graphics produced by this script.
+  - **Output**: When compiled, produces a pdf document in the results folder (`Florida.pdf`). 
+  - **Dependencies**: None 
 
-- **PP_Regress.R**: Performs regression analysis on predator-prey data and produces csv file of regresssion statistics.
+- **FloridaLaTeX.sh**: Compiles `Florida.tex` LaTeX file, removing intermediary files and saving the final pdf in the results folder. 
+  - **Input**: Runs files `Florida.tex` and `Florida.R`.
+  - **Output**: Processes input files to produce a compiled pdf document in the results folder (`Florida.pdf`). 
+  - **Dependencies**: None 
+
+- **MyFirstJupyterNb.ipynb**: Demonstrates a simple Python example where a string is assigned to a variable and printed.
+  - **Input**: Self-contained, does not require any input 
+  - **Output**: Prints message to the terminal 
+  - **Dependencies**: Jupyter Notebook/JupyterLab, Python3
+
+- **PP_Regress.R**: Performs regression analysis on predator-prey data and produces csv file of regression statistics.
   - **Input**: Predator-prey dataset (`EcolArchives-E089-51-D1.csv`).
   - **Output**: Writes regression results to csv file in results folder.
   - **Usage**: `source("PP_Regress.R")`
@@ -64,18 +80,6 @@ Each script is self-contained - run scripts by using `run <filename>.py` or `sou
   - **Usage**: `source("TAutoCorr.R")`
   - **Dependencies**: None
 
-- **TreeHeight.R**: Computes tree heights from measured angles and distances.
-  - **Input**: Dataset with angles and distances.
-      - Example: TreeHeight(37, 40)  
-  - **Output**: Tree height calculations.
-  - **Usage**: `source("TreeHeight.R")`
-  - **Dependencies**: None
-
-- **TestR.R**: Script for testing functions or performing exploratory analysis.
-  - **Input**: None.
-  - **Output**: Prints output to console.
-  - **Usage**: `source("TestR.R")`
-  - **Dependencies**: None
 
 ## Data
 Datasets available in the `.../data/` folder for running scripts:

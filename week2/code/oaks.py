@@ -1,6 +1,14 @@
 #!/usr/bin/env python
 
-"""Identifies oak species from a predefined list of taxa"""
+"""
+Identifies oak species from a predefined list of taxa and demonstrates different 
+ways of filtering and transforming data using loops and list comprehensions.
+
+Key functionalities:
+1. Identifies oak species by checking if the genus starts with 'Quercus'.
+2. Demonstrates filtering with both `for` loops and list comprehensions.
+3. Transforms filtered oak species names to uppercase using both methods.
+"""
 
 __appname__ = 'oaks.py'
 __author__ = 'Georgina Chow (georgina.chow20@imperial.ac.uk)'
@@ -16,7 +24,13 @@ taxa = [ 'Quercus robur',
          ]
 
 def is_an_oak(name):
-    """Returns oak species"""
+    """Checks if a given species is an oak based on its genus.
+
+    Args:
+        name (str): The full name of a species (genus + species).
+
+    Returns:
+        bool: True if the genus is 'Quercus', False otherwise."""
     return name.lower().startswith('quercus ') # Makes all names lowercase 
 
 ##Using for loops 

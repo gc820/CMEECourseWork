@@ -8,6 +8,7 @@ This repository hosts the CMEE bootcamp coursework and class files. It includes 
 - **Python**: (version 3.12.3)
 - **LaTeX**
 - **R**: (version 4.3.3)
+- **Jupyter Notebook or JupyterLab**
 
 ## Dependencies
 - **Python**: Requires Python 3.12.3. Standard library modules used:

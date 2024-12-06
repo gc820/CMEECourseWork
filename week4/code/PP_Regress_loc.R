@@ -24,26 +24,61 @@
 
 library(tidyr)
 library(dplyr)
-library(broom)
 
 MyDF <- as.data.frame(read.csv("../data/EcolArchives-E089-51-D1.csv"))
 MyDF$Predator.lifestage <- as.factor(MyDF$Predator.lifestage)
+MyDF$Location <- as.factor(MyDF$Location)
 
-results <- MyDF  %>% 
-    # Group the data by feeding interaction and predator lifestage 
+# Convert prey mass mg to g 
+MyDF <- MyDF %>%
+  mutate(
+    Prey.mass = case_when(
+        Prey.mass.unit == "g" ~ Prey.mass, 
+        Prey.mass.unit == "mg" ~ Prey.mass/1000, 
+        TRUE ~ NA_real_ # If conitions not met, NA is assigned
+    )
+)
+
+results <- MyDF  %>%  
     group_by(Location, Type.of.feeding.interaction, Predator.lifestage)  %>% 
-    # Summarize performs linear model for each group & stores in model column 
-    summarize(model = list(lm(log(Predator.mass)~log(Prey.mass), data=.)),
-        .groups = "drop") %>%  # Remove grouping variable after calculating summary stats for each subset
-    # Extract regression results for each model - apply functions to each model
-    mutate( # Using annonymous functions
-        slope = sapply(model, function(x) coef(x)[2]),
-        intercept = sapply(model, function(x) coef(x)[1]),
-        r_squared = sapply(model, function(x) summary(x)$fstatistic[1]),
-        f_statistic = sapply(model, function(x) summary(x)$fstatistic[1]),
-        p_value = sapply(model, function(x) summary(x)$coefficients[2,4])
-    ) %>% 
-    # Pick column needed for output (i.e. remove model column)
-    select(Location, Type.of.feeding.interaction, Predator.lifestage, slope, intercept, r_squared, f_statistic, p_value)
+    # .x = data for current group, .y contains grouping key (unique combination of the group_by categories)
+    group_modify(function(.x, .y){
+        if(nrow(.x) >= 3) {  # Creates model for more than 3 data points
+            # Fit linear model for group 
+            model_summary <- summary(lm(log(Predator.mass) ~ log(Prey.mass), data= .x))
+            # Extract coefficients 
+            intercept <- round(model_summary$coefficients["(Intercept)", "Estimate"], digits=3)
+            slope <- round(model_summary$coefficients["log(Prey.mass)", "Estimate"], digits=3)
+            r_squared <- round(model_summary$r.squared, digits=3)
+            p_value <- model_summary$coefficients["log(Prey.mass)", "Pr(>|t|)"]
+            p_value <- ifelse(
+                p_value < 0.001, "<0.001",
+                as.character(round(p_value, digits=3)))
+            f_statistic <- round(model_summary$fstatistic["value"], digits=3)
+            # Create data frame 
+            data.frame(
+                n = nrow(.x),
+                intercept = intercept,
+                slope = slope,
+                r_squared = r_squared,
+                p_value = p_value,
+                f_statistic = f_statistic,
+                comment = NA
+            )
+        } else {
+            data.frame(
+                n = nrow(.x),
+                intercept = NA,
+                slope = NA,
+                r_squared = NA,
+                p_value = NA,
+                f_statistic = NA,
+                comment = "Model not made: less than 3 datapoints"
+            )
+        }
+    }) 
 
-write.csv(results, "../results/PP_Regress_loc_Results.csv", row.names = FALSE)
+view(results)
+
+# Write csv file 
+write.csv(results, "../results/PP_Regress_loc_Results.csv", row.names = TRUE)

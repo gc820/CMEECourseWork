@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-"""List comprehensions 1"""
+"""List comprehensions 1 exercises"""
 
 __appname__ = 'lc1.py'
 __author__ = 'Georgina Chow (georgina.chow20@imperial.ac.uk)'

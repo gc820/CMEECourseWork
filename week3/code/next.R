@@ -15,9 +15,15 @@
 # Dependencies:
 #   Uses base R functions only; no additional packages are required.
 
-# Loop with 'next' statement to skipt even numbers 
+
+# The `next` statement is used to skip the current iteration of a loop
+#  and proceed to the next iteration.
+# This script, `next` is used to skip even numbers in the sequence 1:10.
+
+# Loop through 1:10, with 'next' statement to skip even numbers 
 for (i in 1:10) { 
-   if ((i %% 2)== 0) # check if the number is odd 
-   next # pass to the next iteration of the loop 
-   print(i)
+   if ((i %% 2)== 0) {# Check if the number 'i' is odd (modulo operator)
+      next # pass to the next iteration of the loop 
+   }
+   print(i) # Print number if odd only 
 }

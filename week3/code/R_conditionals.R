@@ -21,41 +21,68 @@
 
 # Checks if an integer is even 
 is.even <- function(n = 2) {
+    if (is.na(n)) {
+        return('Input is NA!') # Handle NA values
+    }
+    if (!is.numeric(n) || n %% 1 != 0) {
+        return('Input must be an integer!') # Ensure the input is an integer
+    }
     if (n %% 2 == 0) {
-        return(paste(n, 'is even!'))
+        return(paste(n, 'is even!')) # Even case
     } else {
-    return(paste(n, 'is odd!'))
+        return(paste(n, 'is odd!')) # Odd case
     }
 }
 
+# Examples 
 is.even(6)
+is.even(NA)
+is.even(2.5)
 
 # Checks if a number is a power of 2 
-is.power2 <- function(n=2) {
-    if (log2(n) %% 1==0) {
-        return(paste(n, 'is a power of 2!'))
+is.power2 <- function(n = 2) {
+    if (is.na(n)) {
+        return('Input is NA!') # Handle NA values
+    }
+    if (n <= 0 || !is.numeric(n) || n %% 1 != 0) {
+        return('Input must be a positive integer!') # Ensure the input is a positive integer
+    }
+    if (log2(n) %% 1 == 0) {
+        return(paste(n, 'is a power of 2!')) # Power of 2 case
     } else {
-    return(paste(n, 'is not a power of 2!'))
-        }
+        return(paste(n, 'is not a power of 2!')) # Not a power of 2 case
+    }
 }
 
+# Examples
 is.power2(4)
+is.power2(3)
+is.power2(-4)
 
 # Checks if a number is prime 
 is.prime <- function(n) {
-    if(n==0) {
-        return(paste(n, 'is a zero!'))
-    } else if (n==1) {
-        return(paste(n, 'is just a unit!'))
+    if (is.na(n)) {
+        return('Input is NA!') # Handle NA values
     }
-
-    ints <- 2:(n-1)
-
-    if (all(n%%ints!=0)) {
-        return(paste(n, 'is a prime!'))
+    if (!is.numeric(n) || n %% 1 != 0) {
+        return('Input must be an integer!') # Ensure the input is an integer
+    }
+    if (n <= 0) {
+        return(paste(n, 'is not valid for primality testing!')) # Handle non-positive numbers
+    }
+    if (n == 1) {
+        return(paste(n, 'is just a unit!')) # Special case for 1
+    }
+    ints <- 2:(n - 1) # Range of possible divisors
+    if (all(n %% ints != 0)) {
+        return(paste(n, 'is a prime!')) # Prime case
     } else {
-    return(paste(n, 'is a composite!'))
+        return(paste(n, 'is a composite!')) # Composite case
     }
 }
 
+# Examples 
 is.prime(3)
+is.prime(1)
+is.prime(0)
+is.prime(10.5)

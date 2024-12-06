@@ -19,6 +19,12 @@
 inputfolder="../data"
 outputfolder="../results"
 
+# Check if 'convert' utility available from ImageMagick
+if ! command -v convert &>/dev/null; then # Check is command 'convert' is available in system PATH 
+    echo "Error: 'convert' utility (ImageMagick) not installed or not available in system PATH. Please install to run this script."
+    exit 1
+fi 
+
 # Modifies how bash handles the filename expansion (globbing)
 # shopt = shell options; -s = set; 
 # nullglob = allows filename patterns that don't match to expand to a null string 

@@ -17,15 +17,27 @@
 # Dependencies:
 #   Uses base R functions only; no additional packages are required.
 
-# Define a custom operation to apply to each row
 
-SomeOperation <- function(v) { # Takses v as input 
+# Define a custom operation to apply to each row
+SomeOperation <- function(v) { # Takes v as input 
+    # Check if the sum of the row's elements is greater than zero
     if (sum(v) > 0) { # If sum of v is >0 (both + and -)
+        # If condition is true, multiply each element of the row by 100
         return (v * 100) # Multiply by 100 
     } else {
+        # If condition is false, return the row unchanged
         return (v) 
     }
 }
 
+# Create a 10x10 matrix of random values from a normal distribution
 M <- matrix(rnorm(100), 10, 10)
+
+# Print the original matrix
 print (apply(M, 1, SomeOperation))
+
+# Apply the `SomeOperation` function to each row of the matrix
+ResultMatrix <- apply(M, 1, SomeOperation)
+
+# Print the resulting matrix after applying the operation
+print(ResultMatrix)

@@ -1,67 +1,66 @@
 #!/usr/bin/env Rscript
 
-# File: TAutoCorr.R
-# Author: Georgina Chow georgina.chow20@imperial.ac.uk
-# Date: Nov 2024
-# Description: Calculates correlation of temperatures between successive years 
-#             using permutation tests. Calculates the observed correlation and 
-#             generates distribution of shuffled correlations (resampling).
-#             Computes approx. p-value to assess significance and creates 
-#             histogram for visualisation.
+# CMEE Groupwork
+# Autocorrelation in Florida weather
+# QUESTION: Are temperatures of one year significantly correlated with the next year (successive years), 
+#           across years in a given location?
 
-# Usage:
-# Run this script from an R session or command line.
-# Example usage in R:
-#   source("TAutoCorr.R")
+library(ggplot2)
+library(cowplot)
 
-# Dependencies:
-#   Requires no additional packages beyond base R.
+# STEPS
+# 1. Compute the appropriate correlation coefficient between successive years and store it (look at the help file for cor()
+# 2. Repeat this calculation a sufficient number of times by – randomly permuting the time series, and then recalculating the correlation coefficient for each randomly permuted sequence of annual temperatures and storing it.
+# 3. Then calculate what fraction of the correlation coefficients from the previous step were greater than that from step 1 (approximate p-value).
 
 
-
-# Load data and set up environment 
-rm(list=ls())
+### Data
 load("../data/KeyWestAnnualMeanTemperature.RData")
 
-# Create vector (n-1) pairs for correlation analysis 
-    # Remove 1st element of vector 
-successive_temps <- ats$Temp[-1] # temp for yrs 2 to (n)
-    # Remove last element of vector 
-previous_temps <- ats$Temp[-length(ats$Temp)] # temp for yrs 1 to (n-1)
+t1 <- ats$Temp[1:99]; t2 <- ats$Temp[2:100]
+p1 <- ggplot(data.frame(t1 = t1, t2 = t2), aes(x = t1, y = t2)) +
+  geom_point() +
+  stat_smooth(method="lm", se=FALSE, colour = "red") +
+  labs(x = "Temperature", y = "Following Year Temperature") +
+  theme_classic()  
+p1
 
-# Calculate original correlation 
-orig_cor <- cor(previous_temps, successive_temps, method="pearson")
 
-# Parameters for the permutation test 
-num_simul <- 1000 # Set the resampling number
-simul_list <- numeric(num_simul) # Preallocation of empty vector 
+### Analysis
+# Observed correlation coefficient
+obs_corr <- cor(ats$Temp[-length(ats$Temp)], ats$Temp[-1])
 
-set.seed(123) # For reproducibility 
-
-# Use for loop to iterate through the number of temperature simulations
-for (i in 1:num_simul) {
-    rand_temp <- sample(ats$Temp) # shuffle temps
-    simul_list[i] <- cor(rand_temp[-1], rand_temp[-length(rand_temp)], 
-    method="pearson")
+# Permutation test
+perm.test <- function(dat = ats$Temp, n = 9999){
+  perm_corr <- rep(NA, n)
+  set.seed(123)
+  for (i in 1:n) {
+    perm_temps <- sample(dat, replace = FALSE)  
+    perm_corr[i] <- cor(perm_temps[-length(perm_temps)], perm_temps[-1])
+  }
+  return(perm_corr)
 }
 
-# Calclate approx p-values 
-count_greater <- sum(simul_list >= orig_cor) 
-# Count correlations greater than original 
-approx_p_val <- count_greater/num_simul # Approximate p-value 
-
-# Print the results 
-cat("Original correlation: ", orig_cor)
-cat("Approx p-value:", approx_p_val)
-
-hist(simul_list, main = "Histogram of Shuffled Correlations",
-     xlab = "Correlation Coefficient", breaks = 30, col = "lightblue")
-abline(v = orig_cor, col = "red", lwd = 2, lty = 2) # Mark original correlation
+# p-value
+perm_corr <- perm.test()
+p_value <- mean(perm_corr >= obs_corr)
 
 
-# Calculating the ratio of the numer of values above the original correlation
-# Checks each value to see if meets condition (TRUE/FALSE)
-count_greater <- sum(simul_list >= orig_cor) # Returns number of times TRUE 
-# Calculates the ratio/approx., asymptotic p-value 
-ratio <- count_greater / length(simul_list)
-print(ratio)
+### Correlation Density
+p2 <- ggplot(as.data.frame(perm_corr), aes(x=perm_corr)) +
+  geom_histogram(colour="white", fill="royalblue2") +
+  geom_vline(xintercept = obs_corr, colour = "red", size=1.5) +
+  labs(x="Correlation Coefficient", y="Frequency") +
+  xlim(-0.35,0.35) +
+  theme_classic()
+p2
+
+
+### Save to PDF
+plots <- plot_grid(p1, p2, nrow=1, labels = c("A", "B"))
+pdf(paper = "a4r", width = 0, height = 0,"../results/floridaplots.pdf")
+print(plots)
+graphics.off()
+
+
+# END

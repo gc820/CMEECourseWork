@@ -19,26 +19,29 @@
 #   Uses base R functions only; no additional packages are required.
 
 
-# This function calculates heights of trees given distance of each tree 
-# from its base and angle to its top, using trigonometric formula 
-#
-# height = distance * tan(radians)
-#
-# ARGUMENTS
-# degrees: The angle of elevation of tree
-# distance: The distance from base of tree (e.g., meters) 
-#
-# OUTPUT
-# The heights of the tree, same units as "distance"
+# `TreeHeight` function:
+# - Calculates the height of a tree using the trigonometric formula:
+#   height = distance * tan(radians)
+# - Arguments:
+#   - `degrees`: The angle of elevation in degrees.
+#   - `distance`: Distance to the tree base in the same units as desired height.
+# - Output:
+#   - The calculated tree height in the same units as `distance`.
 
 # Define the TreeHeight function
 TreeHeight <- function(degrees, distance) { 
     radians <- degrees * pi / 180 # Converts degrees to radians
-    height <- distance * tan(radians) # Calculates the height using tangent function
-    #print(paste("Tree height is:", height))
-
-    return(height) # Returns the calculated height as output 
+    height <- distance * tan(radians) # Calculate height using tangent function
+    return(height) # Return the calculated height 
 }
+
+# `process_tree_heights` function:
+# - Reads CSV file (tree distance & angle data), calculates tree heights,
+#   and saves the results to a new CSV file.
+# - Arguments:
+#   - `filename`: Name of the input CSV file located in `../data/` directory.
+# - Output:
+#   - New CSV file in `../results/` directory with calculated tree heights.
 
 process_tree_heights <- function(filename) { 
     # Get the file path 
@@ -50,10 +53,10 @@ process_tree_heights <- function(filename) {
 
     # Check for column names 
     if (!all(c("Distance.m", "Angle.degrees") %in% colnames(df))) {
-        stop("The dataset must contain columns with distance and degrees columns named 'Distance.m' and 'Angle.degrees'.")
+        stop("Must have distance & degrees columns: Distance.m, Angle.degrees.")
     }
 
-    # Apply the TreeHeight function to each row 
+    # Apply the TreeHeight function to each row and add to new column 
     df$Tree.Height.m <- mapply(TreeHeight, df$Angle.degrees, df$Distance.m)
     
     # Rename columns to match the desired output format 
@@ -70,5 +73,10 @@ process_tree_heights <- function(filename) {
 # Usage of the file 
 process_tree_heights("trees.csv")
 
-# Example 
-#TreeHeight(37, 40)
+
+# Example 1: Calculating the height of a single tree
+# Angle = 37°, Distance = 40m
+example_height <- TreeHeight(37, 40)
+print(paste("Example Tree Height:", example_height, "m"))
+# Expected output:
+# [1] "Example Tree Height: 30.2003819662181 m"

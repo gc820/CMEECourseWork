@@ -5,6 +5,7 @@ This repository contains a collection of R scripts from the Week 3 CMEE bootcamp
 
 ## Languages
 - **R**: (version 4.3.3)
+- **Python**: (version 3.12.3) 
 
 ## Dependencies
 The R scripts in this repository may require the following packages for data processing, control flow, and visualization:
@@ -109,21 +110,28 @@ Each script is self-contained. Run any script by loading it with `source("<filen
   - **Usage**: `source("R_conditionals.R")`
   - **Dependencies**: None
 
-- **Ricker.R**: Implements the Ricker model for population growth.
-  - **Input**: Population data.
-  - **Output**: Growth model output.
-  - **Usage**: `source("Ricker.R")`
-  - **Dependencies**: None
-
 - **sample.R**: Sampling methods in R.
   - **Input**: Dataset to sample from.
   - **Output**: Sampled data.
   - **Usage**: `source("sample.R")`
   - **Dependencies**: None
 
-- **TreeHeight.R**: Computes tree heights based on input data.
-  - **Input**: Data for tree heights.
-  - **Output**: Calculated tree heights.
+-**TestR.py**: Script for executing the `TestR.R` script using Python's `subprocess` module.
+  - **Input**: None.
+- **Output**: Output is saved to `../results/TestR.Rout`. Errors are saved to `../results/TestR_errFile.Rout`.
+- **Usage**: `python TestR.py`
+- **Dependencies**: None 
+  
+- **TestR.R**: Script for testing functions or performing exploratory analysis.
+  - **Input**: None.
+  - **Output**: Prints output to console.
+  - **Usage**: `source("TestR.R")`
+  - **Dependencies**: None
+  
+- **TreeHeight.R**: Computes tree heights from measured angles and distances.
+  - **Input**: Dataset with angles and distances.
+      - Example: TreeHeight(37, 40)  
+  - **Output**: Tree height calculations.
   - **Usage**: `source("TreeHeight.R")`
   - **Dependencies**: None
 
@@ -133,9 +141,9 @@ Each script is self-contained. Run any script by loading it with `source("<filen
   - **Usage**: `source("try.R")`
   - **Dependencies**: None
 
-- **Vectorize1.R & Vectorize2.R**: Demonstrates vectorization in R.
-  - **Input**: Dataset.
-  - **Output**: Console output with vectorized processing.
+- **Vectorize1.R**: Demonstrates vectorization in R, comparing the performance of a loop-based approach vs a built-in vectorized function for summing elements in a matrix.
+  - **Input**: Randomly generated 1000x1000 matrix.
+  - **Output**: Execution times for each summing method.
   - **Usage**: `source("Vectorize1.R")`
   - **Dependencies**: None
 

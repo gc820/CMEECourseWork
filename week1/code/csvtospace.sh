@@ -22,6 +22,15 @@ else
     fi 
 
     filename=$(basename "$file")
+    outputfile="$outputfolder/${filename}.ssv"
+
+    # Check if the output file already exists
+
+    if [ -f "$outputfile" ]; then
+        echo "Error: The output file $outputfile already exists. Operation aborted."
+        exit 1
+    fi
+
     # Extracts the filename from the path (to use in results folder)
     echo "Creating a space separated version of $file ..."
     tr -s "," " " < "$file" > "$outputfolder/${filename}.ssv"  

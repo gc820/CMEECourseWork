@@ -1,6 +1,14 @@
 #!/usr/bin/env python
 
-"""Writing a program with control flows"""
+"""A collection of functions to demonstrate control flow and recursion concepts in Python.
+To run this script, execute it from the command line:
+    python cfexercises1.py
+
+The script includes embedded docstring tests. To verify functionality, use:
+    python -m doctest cfexercises1.py
+
+The script also includes embedded tests using docstrings.
+"""
 
 __appname__ = 'cfexercises1.py'
 __author__ = 'Georgina Chow (georgina.chow20@imperial.ac.uk)'
@@ -53,7 +61,10 @@ def foo_4(x=5):
     return result
 
 def foo_5(x=3):
-    """Recursive function that computes the factorial of x
+    """Recursive function that computes the factorial of x.
+    This function calls itself to compute the factorial, reducing x by 1
+    until it reaches the base case of x = 1.
+
     >>> foo_5(2)
     2
     """
@@ -62,7 +73,10 @@ def foo_5(x=3):
     return x * foo_5(x - 1)
 
 def foo_6(x=4):
-    """Calculates the factorial of x using iterative loops
+    """Calculates the factorial of x using iterative loops.
+    This function uses a while loop to calculate the factorial,
+    decrementing x until it reaches 1.
+
     >>> foo_6(2)
     2
     """
@@ -73,6 +87,9 @@ def foo_6(x=4):
     return facto 
 
 def main(argv): # Defining the main program argument variable 
+    """Demonstrates the functionality of each function in the module.
+    Default arguments are used for functions unless specified.
+    """
     print(foo_1(3))
     print(foo_2(5,8))
     print(foo_3(2,3,6))

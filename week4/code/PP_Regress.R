@@ -33,46 +33,77 @@ p1<-ggplot(MyDF, aes(y = Predator.mass, x = Prey.mass,
     geom_point(shape = 3) +
     geom_smooth(method="lm", se=TRUE, aes(group=Predator.lifestage), 
     fullrange=TRUE) +
-    facet_grid(Type.of.feeding.interaction ~ .) + 
+    facet_grid(Type.of.feeding.interaction ~ ., scales = "fixed") + 
     scale_x_log10() +
     scale_y_log10() +
     labs(x = "Prey mass in grams", y = "Predator mass in grams") +
-    theme_grey() +
+    theme_bw() +
     theme(legend.position="bottom", 
     legend.direction="horizontal", 
     legend.box="horizontal",
     legend.text = element_text(size = 8),
+    legend.title = element_text(face = "bold"),
     legend.spacing.x = unit(0.2, 'cm')) +
     guides(colour = guide_legend(nrow = 1)) +
     coord_fixed(ratio = 0.3)  # Adjust ratio to make facets narrower
 
 pdf("../results/PP_Regress.pdf")
-print(p1)
 dev.off()
 
 # Collect the results of the linear model 
 library(tidyr)
 library(dplyr)
-library(broom)
 
-results <- MyDF  %>% 
-    # Group the data by feeding interaction and predator lifestage 
+# Convert prey mass mg to g 
+MyDF <- MyDF %>%
+  mutate(
+    Prey.mass = case_when(
+        Prey.mass.unit == "g" ~ Prey.mass, 
+        Prey.mass.unit == "mg" ~ Prey.mass/1000, 
+        TRUE ~ NA_real_ # If conitions not met, NA is assigned
+    )
+)
+
+results <- MyDF  %>%  
     group_by(Type.of.feeding.interaction, Predator.lifestage)  %>% 
-    # Summarize performs linear model for each group & stores in model column 
-    summarize(model = list(lm(log(Predator.mass)~log(Prey.mass), data=.)),
-        .groups = "drop") %>%  
-    # Remove grouping variable after calculating summary stats for each subset
-    # Extract regression results for each model - apply functions to each model
-    mutate( # Using annonymous functions
-        slope = sapply(model, function(x) coef(x)[2]),
-        intercept = sapply(model, function(x) coef(x)[1]),
-        r_squared = sapply(model, function(x) summary(x)$fstatistic[1]),
-        f_statistic = sapply(model, function(x) summary(x)$fstatistic[1]),
-        p_value = sapply(model, function(x) summary(x)$coefficients[2,4])
-    ) %>% 
-    # Pick column needed for output (i.e. remove model column)
-    select(Type.of.feeding.interaction, Predator.lifestage, slope, intercept, 
-    r_squared, f_statistic, p_value)
+    # .x = data for current group, .y contains grouping key (unique combination of the group_by categories)
+    group_modify(function(.x, .y){
+        if(nrow(.x) >= 3) {  # Creates model for more than 3 data points
+            # Fit linear model for group 
+            model_summary <- summary(lm(log(Predator.mass) ~ log(Prey.mass), data= .x))
+            # Extract coefficients 
+            intercept <- round(model_summary$coefficients["(Intercept)", "Estimate"], digits=3)
+            slope <- round(model_summary$coefficients["log(Prey.mass)", "Estimate"], digits=3)
+            r_squared <- round(model_summary$r.squared, digits=3)
+            p_value <- model_summary$coefficients["log(Prey.mass)", "Pr(>|t|)"]
+            p_value <- ifelse(
+                p_value < 0.001, "<0.001",
+                as.character(round(p_value, digits=3)))
+            f_statistic <- round(model_summary$fstatistic["value"], digits=3)
+            # Create data frame 
+            data.frame(
+                n = nrow(.x),
+                intercept = intercept,
+                slope = slope,
+                r_squared = r_squared,
+                p_value = p_value,
+                f_statistic = f_statistic,
+                comment = NA
+            )
+        } else {
+            data.frame(
+                n = nrow(.x),
+                intercept = NA,
+                slope = NA,
+                r_squared = NA,
+                p_value = NA,
+                f_statistic = NA,
+                comment = "Model not made: less than 3 datapoints"
+            )
+        }
+    }) 
 
+view(results)
+
+# Save results
 write.csv(results, "../results/PP_Regress_Results.csv", row.names = FALSE)
-

@@ -33,7 +33,7 @@ def even_or_odd(x=0): # if not specified, x should take value 0.
     return f"{x} is Odd!"
 
 def main(argv):
-    """Main argument variable"""
+    """Main argument variable testing even or odd functions with default values."""
     print(even_or_odd(22))
     print(even_or_odd(33))
     return 0 

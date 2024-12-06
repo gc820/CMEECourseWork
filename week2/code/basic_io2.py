@@ -13,8 +13,11 @@ __version__ = '3.12.3'
 # Save the elements of a list to a file 
 list_to_save = range(100)
 
-f = open('../results/testout.txt', 'w') #'w' will overwrite the file 
-for i in list_to_save:
-    f.write(str(i) + '\n') ## Add a new line at the end
-
-f.close()
+try:
+    with open('../results/testout.txt', 'w') as f: #'w' will overwrite the file 
+        for i in list_to_save:
+            f.write(f"{i}\n") ## Add a new line at the end
+except FileNotFoundError:
+    print("Error: The directory '../results/' does not exist.")
+except PermissionError:
+    print("Error: Permission denied when trying to write to the file.")

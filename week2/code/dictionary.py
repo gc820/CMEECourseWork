@@ -1,6 +1,11 @@
 #!/usr/bin/env python
 
-"""Processes taxa list and creates a dictionary"""
+"""
+Processes taxa list and creates a dictionary
+Demonstrates:
+1. Dictionary creation using loops and `defaultdict`.
+2. A Pythonic approach using list comprehensions.
+"""
 
 __appname__ = 'dictionary.py'
 __author__ = 'Georgina Chow (georgina.chow20@imperial.ac.uk)'
@@ -28,12 +33,26 @@ taxa = [ ('Myotis lucifugus','Chiroptera'),
 # 'Chiroptera': {'Myotis  lucifugus'} ... etc
 
 #### Your solution here #### 
-taxa_dict = {}
+
+from collections import defaultdict
+
+# Initialize a defaultdict with list as the default factory
+taxa_dict = defaultdict(list)
+
+# Populate the dictionary
 for species, group in taxa:
-    taxa_dict.setdefault(group, []).append(species)
+    taxa_dict[group].append(species)
+
+# Convert defaultdict to a standard dict for printing
+taxa_dict = dict(taxa_dict)
+print(taxa_dict)
+
+#taxa_dict = {}
+#for species, group in taxa:
+#    taxa_dict.setdefault(group, []).append(species)
     # setdefault (key,[]) allows you to get the value of a key with a default value
     # ensures each key starts with an empty list so we can append values into it 
-print(taxa_dict)
+#print(taxa_dict)
 
 # Now write a list comprehension that does the same (including the printing after the dictionary has been created)  
  
@@ -52,4 +71,5 @@ taxa_dict = {group: {species for species, g in taxa if g == group} for group in 
                 # for each species in taxa, check group name matches current group of outer comprehension
                 # if matches, include species in the set for the group/order
 print(taxa_dict)
+
 

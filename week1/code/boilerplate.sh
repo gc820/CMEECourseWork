@@ -7,8 +7,10 @@
 
 echo -e "\nThis is a shell script!\n"
 
-# -e allows escape sequences (\n, \t etc.) to be interpreted 
+# echo outputs text to the terminal 
+# -e allows escape sequences/special characters (\n, \t etc.) to be interpreted 
+# \n inserts a new line 
 
-#exit
+exit 1
 
 

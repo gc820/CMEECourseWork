@@ -16,12 +16,20 @@
 #   Uses base R functions only; no additional packages are required.
 
 # breaking out of loops
+
+# Initalise loop variable 
 i <- 0 #Inisitaise i 
-    while (i < Inf) {
-        if (i ==10){
-            break
-        } else { # breal out fo the while loop!
-            cat("i equals ", i, "\n")
-            i <- i + 1 # Update i 
-        }
+
+# Start inifinte loop 
+while (i < Inf) {
+    # Check if value of 'i' equals 10 - if so, break
+    if (i ==10){
+        break
+    } else { 
+        # If `i` is not 10, print its current value
+        cat("i equals ", i, "\n")
+        i <- i + 1 # Update i - Increment `i` by 1 for the next iteration
     }
+}
+
+# The script exits the loop once `i` reaches 10 and terminates.
